@@ -98,7 +98,7 @@ a {
 }
 
 .content-button i {
-  color: #febc2f;
+  color: #fff;
   margin-left: 10px;
   transition: color 0.3s;
 }
@@ -110,7 +110,7 @@ a {
 }
 
 .content-button:hover i {
-  color: #292a45;
+  color: #fff;
 }
 
 .bg-container {
