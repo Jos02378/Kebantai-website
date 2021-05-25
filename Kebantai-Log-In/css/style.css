@@ -353,7 +353,7 @@ a {
 }
 
 .password-toggle {
-  background: url(./images/password-unhide.svg);
+  background: url(../images/password-unhide.svg);
   background-repeat: no-repeat;
   background-size: contain;
   width: 20px;
@@ -658,7 +658,7 @@ button[type="submit"]:hover {
   header.page-header .toggle {
     position: absolute;
     right: 3rem;
-    background: url(./images/burger-icon.svg);
+    background: url(../images/burger-icon.svg);
     background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
@@ -669,7 +669,7 @@ button[type="submit"]:hover {
   }
 
   .toggle.active {
-    background: url(./images/cancel.svg);
+    background: url(../images/cancel.svg);
     background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
