@@ -61,3 +61,80 @@ verifyBtn.addEventListener('click', () => {
     //     verifyAlert.style.display = 'unset';
     // }, 3000);
 })
+
+setTimeout(() => {
+    var d = new Date();
+    console.log(d.toLocaleTimeString());
+    var myVar = setInterval(checkVerification, 3000);
+
+
+    var user = firebase.auth().currentUser;
+    var d = new Date();
+    console.log(d.toLocaleTimeString());
+
+    // if (user != null) {
+    //     emailVerified = user.emailVerified;
+    // } else {
+    //     window.location.replace("../Kebantai-Log-In/login.html");
+    // }
+
+    console.log(user.emailVerified);
+
+    if (user.emailVerified) {
+        // window.location.replace("../Kebantai-Homepage-Signed/index.html");
+        console.log("YOU ARE VERIFIED");
+    }
+
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+}, 1000)
+
+function checkVerification() {
+    var d = new Date();
+    console.log(d.toLocaleTimeString());
+
+    firebase.auth().signInWithEmailAndPassword('joseph02378@gmail.com', 'Joseph061002').catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        window.alert("Error: " + errorMessage);
+    });
+
+    var user = firebase.auth().currentUser;
+
+    if (user != null) {
+        emailVerified = user.emailVerified;
+    }
+
+    // else {
+    //     window.location.replace("../Kebantai-Log-In/login.html");
+    // }
+
+    console.log(user.emailVerified);
+
+    if (user.emailVerified) {
+        // window.location.replace("../Kebantai-Homepage-Signed/index.html");
+        console.log("YOU ARE VERIFIED");
+    }
+
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+}
+
+// setTimeout(() => {
+//     var d = new Date();
+//     console.log(d.toLocaleTimeString());
+//     var user = firebase.auth().currentUser;
+
+//     console.log("DIFFERENT THING", user.emailVerified);
+
+//     if (user.emailVerified) {
+//         // window.location.replace("../Kebantai-Homepage-Signed/index.html");
+//         console.log("YOU ARE VERIFIED");
+//     }
+// }, 15000)
