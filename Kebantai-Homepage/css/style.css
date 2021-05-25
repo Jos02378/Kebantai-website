@@ -54,7 +54,7 @@ a {
 
 .content-tag {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
   /* font-style: italic; */
   color: #febc2f;
   text-shadow: 0px 0px 20px #febc2f60;
@@ -70,9 +70,10 @@ a {
 }
 
 .content-subtitle {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 26px;
+  margin-top: 20px;
 }
 
 .content-button {
