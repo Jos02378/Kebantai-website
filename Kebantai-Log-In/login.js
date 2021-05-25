@@ -331,15 +331,18 @@ signinButton.addEventListener("click", (e) => {
         });
 
         firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
+            var user_email_id = user.email;
+            var user_email_verified = user.emailVerified;
+            if (user && user_email_verified) {
                 // User is signed in.
-                // window.location.replace("main.html");
-                var user_email_id = user.email;
-                var user_email_verified = user.emailVerified;
-                console.log(user_email_id, user_email_verified);
-
+                // console.log(user_email_id, user_email_verified);
+                alert(user_email_id);
+                alert(user_email_verified);
+                window.location.replace("../Kebantai-Homepage-Signed/index.html");
+                // window.location = "../Kebantai-Homepage-Signed/index.html";
             } else {
                 // No user is signed in.
+                window.location.href = "index.html";
             }
         });
 
