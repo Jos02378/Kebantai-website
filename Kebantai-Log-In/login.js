@@ -191,6 +191,10 @@ signupButton.addEventListener("click", (e) => {
     let email_validation = validate(email_signup.value);
 
     let email_signup_trimmed = email_signup.value.trim();
+
+    localStorage.setItem("verify_email_signup", email_signup_trimmed);
+    localStorage.setItem("verify_password_signup", verify_password_signup);
+
     auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
         var user = firebase.auth().currentUser;
         window.location.href = "index.html";
@@ -212,7 +216,6 @@ signupButton.addEventListener("click", (e) => {
         var errorMessage = error.message;
 
         show_error(errorMessage);
-        // window.alert("Error: " + errorMessage);
     });
 
     // db.collection('account').where("username", "==", username_signup.value.toLowerCase()).get().then((snapshot) => {
