@@ -24,6 +24,8 @@ db.settings({
 // Initialized Firebase Realtime Database
 const dbf = firebase.database();
 
+let firebase_room_id = localStorage.getItem("room_id");
+
 // HEADER BEHAVIOR
 let menuToggle = document.querySelector('.navigation-toggle');
 let rightTab = document.querySelector('.right-header-tab');
@@ -81,7 +83,6 @@ for (let i = 0; i < errorClose.length; i++) {
 /*
 //Date
 */
-
 var options_box_date = document.getElementById("options_box_date");
 
 var today_date = new Date().getDate();
@@ -780,8 +781,7 @@ function renderMatch(doc) {
     display_container.appendChild(display_content_per_date);
 }
 
-
-// TEST FUNCTION WITH DUMMY DATA
+// CALL DATA TO FIREBASE
 
 db.collection('match').where('sex', '==', sex_value).orderBy("date").orderBy("time").onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
@@ -800,6 +800,7 @@ db.collection('match').where('sex', '==', sex_value).orderBy("date").orderBy("ti
     })
 })
 
+// TEST FUNCTION WITH DUMMY DATA
 
 var ok_test = {
     address: "Jl. Gatot Subroto No.72",
@@ -1097,17 +1098,17 @@ function renderMatch3(doc, id) {
         })
     })
 
-    if (doc.owner == "1fj3C0p3vowY8tCrpHNa") {
+    if (doc.owner == firebase_room_id) {
         //owner
         button.className = "display-delete";
         button_p.innerHTML = "Delete";
         button_image.src = "./images/Trash.svg";
-    } else if (doc.matches_join.includes("1fj3C0p3vowY8tCrpHNa")) {
+    } else if (doc.matches_join.includes(firebase_room_id)) {
         //leave
         button.className = "display-leave";
         button_p.innerHTML = "Leave";
         button_image.src = "./images/Leave.svg";
-    } else if (pending_list_data.includes("1fj3C0p3vowY8tCrpHNa")) {
+    } else if (pending_list_data.includes(firebase_room_id)) {
         //withdraw
         button.className = "display-withdraw";
         button_p.innerHTML = "Withdraw";
@@ -1185,7 +1186,7 @@ function renderMatch3(doc, id) {
             let button_parent_data_id = but.parentNode.getAttribute("data-id");
 
             db.collection('match').doc(button_parent_data_id).update({
-                matches_join: firebase.firestore.FieldValue.arrayRemove("1fj3C0p3vowY8tCrpHNa")
+                matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
             });
 
             but.className = "display-request";
@@ -1204,7 +1205,8 @@ function renderMatch3(doc, id) {
                 let data_want_delete = "";
 
                 doc_pending.forEach(data => {
-                    let match = data.match(/1fj3C0p3vowY8tCrpHNa/);
+                    var regex = new RegExp(firebase_room_id, 'g');
+                    let match = data.match(regex);
                     if (match) {
                         data_want_delete = match.input;
                     }
@@ -1275,7 +1277,7 @@ document.addEventListener("click", () => {
             let button_parent_data_id = but.parentNode.getAttribute("data-id");
 
             db.collection('match').doc(button_parent_data_id).update({
-                matches_join: firebase.firestore.FieldValue.arrayRemove("1fj3C0p3vowY8tCrpHNa")
+                matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
             });
 
             but.className = "display-request";
@@ -1296,7 +1298,9 @@ document.addEventListener("click", () => {
                 let data_want_delete = "";
 
                 doc_pending.forEach(data => {
-                    let match = data.match(/1fj3C0p3vowY8tCrpHNa/);
+                    // let match = data.match(/1fj3C0p3vowY8tCrpHNa/);
+                    var regex = new RegExp(firebase_room_id, 'g');
+                    let match = data.match(regex);
                     if (match) {
                         data_want_delete = match.input;
                     }
@@ -1361,7 +1365,7 @@ document.addEventListener("click", () => {
             } else {
                 let button_change = document.getElementById("selected_button");
                 let button_parent = button_change.parentNode;
-                let data = textarea.value.trim() + "~~" + "1fj3C0p3vowY8tCrpHNa";
+                let data = textarea.value.trim() + "~~" + firebase_room_id;
 
                 // GET THE NEW VALUE OF PLAYERS (buat chat)
                 let amountPlayers = button_parent.querySelector('.display-amount').querySelector('p').innerHTML;

@@ -516,7 +516,6 @@ signupForm.addEventListener('submit', (e) => {
   region_value = "";
 
   //SECOND PAGE OF THE FORM
-
   myCalender.month = new Date().getMonth();
   myCalender._updateCalendar("ok");
 

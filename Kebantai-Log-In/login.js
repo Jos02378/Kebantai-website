@@ -195,135 +195,134 @@ signupButton.addEventListener("click", (e) => {
     localStorage.setItem("verify_email_signup", email_signup_trimmed);
     localStorage.setItem("verify_password_signup", verify_password_signup);
 
-    auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
-        var user = firebase.auth().currentUser;
-        window.location.href = "index.html";
+    // auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
+    //     var user = firebase.auth().currentUser;
+    //     window.location.href = "index.html";
 
-        //SEND VERIFICATION EMAIL
-        user.sendEmailVerification().then(function () {
-            // Email sent.
-            console.log("Email verification already sent");
+    //     //SEND VERIFICATION EMAIL
+    //     user.sendEmailVerification().then(function () {
+    //         // Email sent.
+    //         console.log("Email verification already sent");
 
-        }).catch(function (error) {
-            // An error happened.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log("Error: " + errorMessage);
-        })
-
-    }).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        show_error(errorMessage);
-    });
-
-    // db.collection('account').where("username", "==", username_signup.value.toLowerCase()).get().then((snapshot) => {
-    //     snapshot.docs.forEach(doc => {
-    //         if (doc.exists) {
-    //             duplicate = true;
-    //         }
+    //     }).catch(function (error) {
+    //         // An error happened.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         console.log("Error: " + errorMessage);
     //     })
 
-    //     if (username_signup.value == "") {
-    //         error_text.innerHTML = "Please specify your username.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (duplicate) {
-    //         error_text.innerHTML = "The username has been taken.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (username_signup.value.length < 6) {
-    //         error_text.innerHTML = "Your username must at least be 6 characters.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (check_whitespace_username) {
-    //         error_text.innerHTML = "Your username must not contain any space.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (email_signup.value == "") {
-    //         error_text.innerHTML = "Please specify your email.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (email_validation == false) {
-    //         error_text.innerHTML = "Please enter a valid email.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (password_signup.value.length == 0) {
-    //         error_text.innerHTML = "Please fill in the password.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (check_whitespace_password) {
-    //         error_text.innerHTML = "Your password must not contain any space.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (password_signup.value.length < 6) {
-    //         error_text.innerHTML = "Your password must at least be 6 characters.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (sex_value == "") {
-    //         error_text.innerHTML = "Please specify your gender.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (age_signup.value.length == 0) {
-    //         error_text.innerHTML = "Please specify your age.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else if (age_signup.value < 8) {
-    //         error_text.innerHTML = "Sorry, you must be at least 8 years old to register on our site.";
-    //         error.style.display = "block";
-    //         errorBox.style.display = "flex";
-    //     } else {
-    //         //Sign up the user
+    // }).catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
 
-    //         let email_signup_trimmed = email_signup.value.trim();
-    //         auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
-    //             var user = firebase.auth().currentUser;
+    //     show_error(errorMessage);
+    // });
 
-    //             // Add data to firestore
-    //             // db.collection('account').add({
-    //             //     username: username_signup.value.toLowerCase(),
-    //             //     sex: sex_value,
-    //             //     age: age_signup.value,
-    //             //     matches_created_join: [],
-    //             // }).then(function () {
-    //             //     // RESET ALL INPUT VALUES
-    //             //     username_signup.value = "";
-    //             //     email_signup.value = "";
-    //             //     password_signup.value = "";
-    //             //     sex_value = "";
-    //             //     sex_options.forEach(option => {
-    //             //         option.querySelector("input").checked = false;
-    //             //     })
-    //             //     age_signup.value = "";
-    //             //     errorBox.style.display = "none";
+    db.collection('account').where("username", "==", username_signup.value.toLowerCase()).get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            if (doc.exists) {
+                duplicate = true;
+            }
+        })
 
-    //             //     window.location.href = "index.html";
-    //             // })
+        if (username_signup.value == "") {
+            error_text.innerHTML = "Please specify your username.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (duplicate) {
+            error_text.innerHTML = "The username has been taken.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (username_signup.value.length < 6) {
+            error_text.innerHTML = "Your username must at least be 6 characters.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (check_whitespace_username) {
+            error_text.innerHTML = "Your username must not contain any space.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (email_signup.value == "") {
+            error_text.innerHTML = "Please specify your email.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (email_validation == false) {
+            error_text.innerHTML = "Please enter a valid email.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (password_signup.value.length == 0) {
+            error_text.innerHTML = "Please fill in the password.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (check_whitespace_password) {
+            error_text.innerHTML = "Your password must not contain any space.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (password_signup.value.length < 6) {
+            error_text.innerHTML = "Your password must at least be 6 characters.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (sex_value == "") {
+            error_text.innerHTML = "Please specify your gender.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (age_signup.value.length == 0) {
+            error_text.innerHTML = "Please specify your age.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else if (age_signup.value < 8) {
+            error_text.innerHTML = "Sorry, you must be at least 8 years old to register on our site.";
+            error.style.display = "block";
+            errorBox.style.display = "flex";
+        } else {
 
-    //             window.location.href = "index.html";
+            //Sign up the user
+            let email_signup_trimmed = email_signup.value.trim();
+            auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
+                var user = firebase.auth().currentUser;
 
-    //             //SEND VERIFICATION EMAIL
-    //             user.sendEmailVerification().then(function () {
-    //                 // Email sent.
-    //                 console.log("Email verification already sent");
+                // Add data to firestore
+                db.collection('account').add({
+                    username: username_signup.value.toLowerCase(),
+                    sex: sex_value,
+                    age: age_signup.value,
+                    matches_created_join: [],
+                    email: email_signup_trimmed
+                }).then(function () {
+                    // RESET ALL INPUT VALUES
+                    username_signup.value = "";
+                    email_signup.value = "";
+                    password_signup.value = "";
+                    sex_value = "";
+                    sex_options.forEach(option => {
+                        option.querySelector("input").checked = false;
+                    })
+                    age_signup.value = "";
+                    errorBox.style.display = "none";
+                })
 
-    //             }).catch(function (error) {
-    //                 // An error happened.
-    //                 var errorCode = error.code;
-    //                 var errorMessage = error.message;
-    //                 console.log("Error: " + errorMessage);
-    //             })
+                //SEND VERIFICATION EMAIL
+                user.sendEmailVerification().then(function () {
+                    // Email sent.
+                    console.log("Email verification already sent");
 
-    //         }).catch((error) => {
-    //             var errorCode = error.code;
-    //             var errorMessage = error.message;
+                }).catch(function (error) {
+                    // An error happened.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log("Error: " + errorMessage);
+                })
 
-    //             show_error(errorMessage);
-    //             // window.alert("Error: " + errorMessage);
-    //         });
-    //     }
-    // })
+                window.location.href = "index.html";
+
+            }).catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                show_error(errorMessage);
+                // window.alert("Error: " + errorMessage);
+            });
+        }
+    })
 })
 
 // SIGNIN BUTTON
@@ -353,6 +352,9 @@ signinButton.addEventListener("click", (e) => {
         // LOG IN THE USER
         let email_signin_trimmed = email_signin.value.trim();
 
+        localStorage.setItem("verify_email_signup", email_signin_trimmed);
+        localStorage.setItem("verify_password_signup", password_signin.value);
+
         firebase.auth().signInWithEmailAndPassword(email_signin_trimmed, password_signin.value).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -365,8 +367,6 @@ signinButton.addEventListener("click", (e) => {
             if (user && user_email_verified) {
                 // User is signed in.
                 // console.log(user_email_id, user_email_verified);
-                alert(user_email_id);
-                alert(user_email_verified);
                 window.location.replace("../Kebantai-Homepage-Signed/index.html");
                 // window.location = "../Kebantai-Homepage-Signed/index.html";
             } else {
