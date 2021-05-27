@@ -25,6 +25,7 @@ db.settings({
 const dbf = firebase.database();
 
 let firebase_room_id = localStorage.getItem("room_id");
+console.log("firebase_room_id", firebase_room_id);
 
 // HEADER BEHAVIOR
 let menuToggle = document.querySelector('.navigation-toggle');

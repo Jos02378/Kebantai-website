@@ -20,6 +20,8 @@ db.settings({
   timestampsInSnapshots: true
 });
 
+let firebase_room_id = localStorage.getItem("room_id");
+
 const modalReason = document.querySelectorAll(".display-delete");
 for (var i = 0; i < modalReason.length; i++) {
   modalReason[i].addEventListener('click',
@@ -89,7 +91,7 @@ for (let i = 0; i < errorClose.length; i++) {
 // FIREBASE
 */
 
-db.collection('account').doc("MXd9rXgzZOvPLldbcyCY").get().then(function (doc) {
+db.collection('account').doc(firebase_room_id).get().then(function (doc) {
   let matches_join_created = doc.data().matches_created_join;
 
   db.collection('match').where(firebase.firestore.FieldPath.documentId(), 'in', matches_join_created).get().then((snapshot) => {
@@ -247,17 +249,17 @@ function renderMatch3(doc, id) {
     })
   })
 
-  if (doc.owner == "1fj3C0p3vowY8tCrpHNa") {
+  if (doc.owner == firebase_room_id) {
     //owner
     button.className = "display-delete";
     button_p.innerHTML = "Delete";
     button_image.src = "./images/Trash.svg";
-  } else if (doc.matches_join.includes("1fj3C0p3vowY8tCrpHNa")) {
+  } else if (doc.matches_join.includes(firebase_room_id)) {
     //leave
     button.className = "display-leave";
     button_p.innerHTML = "Leave";
     button_image.src = "./images/Leave.svg";
-  } else if (pending_list_data.includes("1fj3C0p3vowY8tCrpHNa")) {
+  } else if (pending_list_data.includes(firebase_room_id)) {
     //withdraw
     button.className = "display-withdraw";
     button_p.innerHTML = "Withdraw";
@@ -330,9 +332,9 @@ function renderMatch3(doc, id) {
       let ul_selected_child = li_selected.parentNode.childElementCount;
       let div_selected = ul_selected.parentNode;
 
-      // db.collection('match').doc(button_parent_data_id).update({
-      //   matches_join: firebase.firestore.FieldValue.arrayRemove("1fj3C0p3vowY8tCrpHNa")
-      // });
+      db.collection('match').doc(button_parent_data_id).update({
+        matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
+      });
 
       if (ul_selected_child < 2) {
         display_container.removeChild(div_selected)
@@ -464,7 +466,7 @@ document.addEventListener("click", () => {
       let button_parent_data_id = but.parentNode.getAttribute("data-id");
 
       db.collection('match').doc(button_parent_data_id).update({
-        matches_join: firebase.firestore.FieldValue.arrayRemove("1fj3C0p3vowY8tCrpHNa")
+        matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
       });
 
       but.className = "display-request";

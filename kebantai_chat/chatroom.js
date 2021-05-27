@@ -11,6 +11,8 @@
     measurementId: "G-M3H7QJBJGQ"
   };
 
+  let firebase_room_id = localStorage.getItem("room_id");
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
@@ -95,7 +97,7 @@
   // let pending_members = document.querySelector('.pending-members');
   // let members_amount = document.querySelector('.members-amount');
 
-  dbf.collection('account').doc("MXd9rXgzZOvPLldbcyCY").get().then(function (doc) {
+  dbf.collection('account').doc(firebase_room_id).get().then(function (doc) {
     let matches_join_created = doc.data().matches_created_join;
 
     dbf.collection('match').where(firebase.firestore.FieldPath.documentId(), 'in', matches_join_created).get().then((snapshot) => {
@@ -108,7 +110,7 @@
       })
     })
 
-    dbf.collection('match').where("owner", "==", "MXd9rXgzZOvPLldbcyCY").get().then((snapshot) => {
+    dbf.collection('match').where("owner", "==", firebase_room_id).get().then((snapshot) => {
       snapshot.docs.forEach(dok => {
         let owner = true;
         if (!dok.data().owner) {
@@ -267,7 +269,7 @@
               let total_member = 1 + change.doc.data().matches_join.length;
               members_amount.innerHTML = total_member + ' / ' + change.doc.data().limit;
 
-              if (change.doc.data().owner == "1fj3C0p3vowY8tCrpHNa") {
+              if (change.doc.data().owner == firebase_room_id) {
                 let doc_pending_data = change.doc.data().pending;
                 let pending_list_member = [];
                 let pending_list_reason = [];
@@ -412,7 +414,7 @@
 
   function delete_pending_2(data) {
     if ((lastClick5 + delay2) < Date.now()) {
-      if (data.owner == "1fj3C0p3vowY8tCrpHNa") {
+      if (data.owner == firebase_room_id) {
         let doc_pending_data = data.pending;
         let pending_list_member = [];
         let pending_list_reason = [];
@@ -1332,7 +1334,6 @@
   /*
   // PENDING AND MEMBER SWITCH  
   */
-
   const disabledWindow = document.querySelector('.disabled');
   const eventMembersSwitch = document.querySelector('.members-event-switch');
   const pendingMembersSwitch = document.querySelector('.members-pending-switch');

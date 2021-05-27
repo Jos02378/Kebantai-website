@@ -190,11 +190,6 @@ signupButton.addEventListener("click", (e) => {
     let check_whitespace_password = hasWhiteSpace(password_signup.value);
     let email_validation = validate(email_signup.value);
 
-    let email_signup_trimmed = email_signup.value.trim();
-
-    localStorage.setItem("verify_email_signup", email_signup_trimmed);
-    localStorage.setItem("verify_password_signup", verify_password_signup);
-
     // auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
     //     var user = firebase.auth().currentUser;
     //     window.location.href = "index.html";
@@ -274,9 +269,12 @@ signupButton.addEventListener("click", (e) => {
             error.style.display = "block";
             errorBox.style.display = "flex";
         } else {
-
             //Sign up the user
             let email_signup_trimmed = email_signup.value.trim();
+
+            localStorage.setItem("verify_email_signup", email_signup_trimmed);
+            localStorage.setItem("verify_password_signup", password_signup.value);
+
             auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
                 var user = firebase.auth().currentUser;
 
@@ -298,12 +296,13 @@ signupButton.addEventListener("click", (e) => {
                     })
                     age_signup.value = "";
                     errorBox.style.display = "none";
+
+                    window.location.href = "index.html";
                 })
 
                 //SEND VERIFICATION EMAIL
                 user.sendEmailVerification().then(function () {
                     // Email sent.
-                    console.log("Email verification already sent");
 
                 }).catch(function (error) {
                     // An error happened.
@@ -311,8 +310,6 @@ signupButton.addEventListener("click", (e) => {
                     var errorMessage = error.message;
                     console.log("Error: " + errorMessage);
                 })
-
-                window.location.href = "index.html";
 
             }).catch((error) => {
                 var errorCode = error.code;
