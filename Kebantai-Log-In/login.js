@@ -190,6 +190,29 @@ signupButton.addEventListener("click", (e) => {
     let check_whitespace_password = hasWhiteSpace(password_signup.value);
     let email_validation = validate(email_signup.value);
 
+    // auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
+    //     var user = firebase.auth().currentUser;
+    //     window.location.href = "index.html";
+
+    //     //SEND VERIFICATION EMAIL
+    //     user.sendEmailVerification().then(function () {
+    //         // Email sent.
+    //         console.log("Email verification already sent");
+
+    //     }).catch(function (error) {
+    //         // An error happened.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         console.log("Error: " + errorMessage);
+    //     })
+
+    // }).catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+
+    //     show_error(errorMessage);
+    // });
+
     db.collection('account').where("username", "==", username_signup.value.toLowerCase()).get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             if (doc.exists) {
@@ -247,11 +270,12 @@ signupButton.addEventListener("click", (e) => {
             errorBox.style.display = "flex";
         } else {
             //Sign up the user
-
             let email_signup_trimmed = email_signup.value.trim();
-            auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
 
-                //SEND VERIFICATION EMAIL
+            localStorage.setItem("verify_email_signup", email_signup_trimmed);
+            localStorage.setItem("verify_password_signup", password_signup.value);
+
+            auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
                 var user = firebase.auth().currentUser;
 
                 // Add data to firestore
@@ -260,6 +284,7 @@ signupButton.addEventListener("click", (e) => {
                     sex: sex_value,
                     age: age_signup.value,
                     matches_created_join: [],
+                    email: email_signup_trimmed
                 }).then(function () {
                     // RESET ALL INPUT VALUES
                     username_signup.value = "";
@@ -275,9 +300,9 @@ signupButton.addEventListener("click", (e) => {
                     window.location.href = "index.html";
                 })
 
+                //SEND VERIFICATION EMAIL
                 user.sendEmailVerification().then(function () {
                     // Email sent.
-                    console.log("Email verification already sent");
 
                 }).catch(function (error) {
                     // An error happened.
@@ -324,6 +349,9 @@ signinButton.addEventListener("click", (e) => {
         // LOG IN THE USER
         let email_signin_trimmed = email_signin.value.trim();
 
+        localStorage.setItem("verify_email_signup", email_signin_trimmed);
+        localStorage.setItem("verify_password_signup", password_signin.value);
+
         firebase.auth().signInWithEmailAndPassword(email_signin_trimmed, password_signin.value).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -331,15 +359,16 @@ signinButton.addEventListener("click", (e) => {
         });
 
         firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
+            var user_email_id = user.email;
+            var user_email_verified = user.emailVerified;
+            if (user && user_email_verified) {
                 // User is signed in.
-                // window.location.replace("main.html");
-                var user_email_id = user.email;
-                var user_email_verified = user.emailVerified;
-                console.log(user_email_id, user_email_verified);
-
+                // console.log(user_email_id, user_email_verified);
+                window.location.replace("../Kebantai-Homepage-Signed/index.html");
+                // window.location = "../Kebantai-Homepage-Signed/index.html";
             } else {
                 // No user is signed in.
+                window.location.href = "index.html";
             }
         });
 

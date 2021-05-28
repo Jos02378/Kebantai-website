@@ -61,3 +61,46 @@ verifyBtn.addEventListener('click', () => {
     //     verifyAlert.style.display = 'unset';
     // }, 3000);
 })
+
+// VERIFY EMAIL
+let user_email = localStorage.getItem("verify_email_signup");
+let user_pass = localStorage.getItem("verify_password_signup");
+
+setTimeout(() => {
+    var d = new Date();
+    console.log(d.toLocaleTimeString());
+    var myVar = setInterval(checkVerification, 3000);
+
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+}, 1000)
+
+function checkVerification() {
+    // var d = new Date();
+    // console.log(d.toLocaleTimeString());
+
+    firebase.auth().signInWithEmailAndPassword(user_email, user_pass).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        window.alert("Error: " + errorMessage);
+    });
+
+    var user = firebase.auth().currentUser;
+
+    if (user != null) {
+        emailVerified = user.emailVerified;
+    }
+
+    if (user.emailVerified) {
+        window.location.replace("../Kebantai-Homepage-Signed/index.html");
+    }
+
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+}
