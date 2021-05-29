@@ -1229,6 +1229,8 @@ function renderMatch3(doc, id) {
                 document.querySelector(".modal-reason").style.display = 'flex';
             });
     }
+
+    sortDiv();
 }
 
 // FUNCTION TO MODIFY ELEMENT
