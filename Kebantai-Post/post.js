@@ -477,6 +477,8 @@ signupForm.addEventListener('submit', (e) => {
   let location_name_form = signupForm.location_name.value;
   let address_form = signupForm.address.value;
 
+  let firebase_room_id = localStorage.getItem("room_id");
+
   db.collection('match').add({
     event_name: event_name_form.trim(),
     location: location_name_form.trim(),
@@ -488,10 +490,10 @@ signupForm.addEventListener('submit', (e) => {
     sex: sex_value,
     limit: form_number.value,
     //ARRAY BUAT MATCHES_JOIN DAN PENDING
-    matches_join: ["D4T0Imix4NVhf8L0w8J3"],
-    pending: ["D4T0Imix4NVhf8L0w8J3"],
+    matches_join: [],
+    pending: [],
     //GANTI NAMA OWNER
-    owner: "D4T0Imix4NVhf8L0w8J3"
+    owner: firebase_room_id
   })
 
   //GO TO FIRST SECTION OF THE FORM

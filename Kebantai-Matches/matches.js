@@ -268,6 +268,7 @@ selectedAll.forEach(selected => {
 
     optionsList.forEach(o => {
         o.addEventListener("click", () => {
+            // var date_current = new Date();
             if (previous_word != o.querySelector("label").innerHTML) {
                 if (sport_value == "all sport") {
                     if (selected_date.innerHTML == "All Date" && region_value == "all region") {
@@ -284,6 +285,7 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
+                                    let check_date = new Date(change.doc.data.date);
                                     if (change.doc.data().owner) {
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
