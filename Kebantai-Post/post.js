@@ -496,6 +496,20 @@ signupForm.addEventListener('submit', (e) => {
     owner: firebase_room_id
   })
 
+  // ADD DATA TO ACCOUNT
+  db.collection("match").where("event_name", "==", event_name_form.trim())
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection('account').doc(firebase_room_id).update({
+          matches_created_join: firebase.firestore.FieldValue.arrayUnion(doc.id)
+        });
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+
   //GO TO FIRST SECTION OF THE FORM
   page1.classList.remove('page-1-stateB');
   page2.classList.remove('page-2-stateB');
