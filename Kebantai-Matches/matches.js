@@ -268,11 +268,6 @@ selectedAll.forEach(selected => {
 
     optionsList.forEach(o => {
         o.addEventListener("click", () => {
-            console.log(region_value);
-            // selected.innerHTML = o.querySelector("label").innerHTML;
-            // optionsContainer.classList.remove("active");
-            // console.log("ATAS", time_value);
-            // console.log("previous_time", previous_time);
             if (previous_word != o.querySelector("label").innerHTML) {
                 if (sport_value == "all sport") {
                     if (selected_date.innerHTML == "All Date" && region_value == "all region") {

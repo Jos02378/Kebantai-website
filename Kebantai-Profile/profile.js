@@ -19,6 +19,9 @@ db.settings({
   timestampsInSnapshots: true
 });
 
+//Initialize Authentication
+const auth = firebase.auth();
+
 let menuToggle = document.querySelector('.navigation-toggle');
 let rightTab = document.querySelector('.right-header-tab');
 let darkBackground = document.querySelector('.dark-background');
@@ -53,9 +56,19 @@ menuToggle.addEventListener('click', () => {
   darkBackground.classList.add('active');
 });
 
+let user_email = localStorage.getItem("verify_email_signup");
+
 let changePassword = document.querySelector('.password-button');
 changePassword.addEventListener('click', () => {
   modalPassword.style.display = "unset";
+  auth.sendPasswordResetEmail(user_email).then(function () {
+    // Email sent.
+  }).catch(function (error) {
+    // An error happened.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log("Error: " + errorMessage);
+  });
 });
 
 let logout = document.querySelector('.log-out-button');
@@ -86,6 +99,7 @@ for (let i = 0; i < modalClose.length; i++) {
 let noPassword = document.querySelector('.no-password');
 let yesPassword = document.querySelector('.yes-password');
 let noLeave = document.querySelector('.no-leave');
+let yesLeave = document.querySelector('.yes-leave');
 
 noPassword.addEventListener('click', () => {
   modalPassword.style.display = "none";
@@ -100,6 +114,15 @@ noLeave.addEventListener('click', () => {
   modalLeave.style.display = "none";
 })
 
+yesLeave.addEventListener('click', () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    window.location.replace("../Kebantai-Homepage-Unsigned/index.html");
+  }).catch((error) => {
+    // An error happened.
+  });
+})
+
 /*
 // Get the user's data
 */
@@ -111,15 +134,18 @@ let sex = document.querySelector("#sex");
 let age = document.querySelector("#age");
 
 // FIREBASE AUTH
-var user = firebase.auth().currentUser;
-if (user != null) {
-  email_user.innerHTML = user.email;
-}
+// var user = firebase.auth().currentUser;
+// if (user != null) {
+//   email_user.innerHTML = user.email;
+// }
+
+let firebase_room_id = localStorage.getItem("room_id");
 
 // FIRESTORE
-db.collection("account").where("username", "==", "joseph").get().then((querySnapshot) => {
+db.collection("account").where(firebase.firestore.FieldPath.documentId(), "==", firebase_room_id).get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       profile_name.innerHTML = doc.data().username + "'s";
+      email_user.innerHTML = doc.data().email;
       username.innerHTML = doc.data().username;
       sex.innerHTML = doc.data().sex;
       age.innerHTML = doc.data().age;

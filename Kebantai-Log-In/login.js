@@ -352,30 +352,36 @@ signinButton.addEventListener("click", (e) => {
         localStorage.setItem("verify_email_signup", email_signin_trimmed);
         localStorage.setItem("verify_password_signup", password_signin.value);
 
-        firebase.auth().signInWithEmailAndPassword(email_signin_trimmed, password_signin.value).catch((error) => {
+        firebase.auth().signInWithEmailAndPassword(email_signin_trimmed, password_signin.value).then(() => {
+            firebase.auth().onAuthStateChanged(function (user) {
+                var user_email_id = user.email;
+                var user_email_verified = user.emailVerified;
+                if (user && user_email_verified) {
+                    // User is signed in.
+                    // console.log(user_email_id, user_email_verified);
+                    window.location.replace("../Kebantai-Homepage-Signed/index.html");
+                    // window.location = "../Kebantai-Homepage-Signed/index.html";
+                } else {
+                    // No user is signed in.
+                    window.location.href = "index.html";
+                }
+            });
+
+            // RESET THE INPUT VALUES
+            email_signin.value = "";
+            password_signin.value = "";
+            errorBox.style.display = "none";
+        }).catch((error) => {
+            let error_element = document.querySelector(".error");
+            let error_text = document.querySelector(".error-text");
+            let errorBox = document.querySelector('.error');
+
             var errorCode = error.code;
             var errorMessage = error.message;
-            window.alert("Error: " + errorMessage);
+            error_text.innerHTML = errorMessage;
+            error_element.style.display = "block";
+            errorBox.style.display = "flex";
         });
-
-        firebase.auth().onAuthStateChanged(function (user) {
-            var user_email_id = user.email;
-            var user_email_verified = user.emailVerified;
-            if (user && user_email_verified) {
-                // User is signed in.
-                // console.log(user_email_id, user_email_verified);
-                window.location.replace("../Kebantai-Homepage-Signed/index.html");
-                // window.location = "../Kebantai-Homepage-Signed/index.html";
-            } else {
-                // No user is signed in.
-                window.location.href = "index.html";
-            }
-        });
-
-        // RESET THE INPUT VALUES
-        email_signin.value = "";
-        password_signin.value = "";
-        errorBox.style.display = "none";
     }
 })
 
@@ -408,7 +414,6 @@ reset_password.addEventListener("click", () => {
         // KIRIM RESET PASSWORD EMAIL
         auth.sendPasswordResetEmail(input_password_reset.value).then(function () {
             // Email sent.
-            console.log("RESET-PASSWORD EMAIL SENT");
         }).catch(function (error) {
             // An error happened.
             var errorCode = error.code;

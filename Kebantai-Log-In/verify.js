@@ -97,10 +97,4 @@ function checkVerification() {
     if (user.emailVerified) {
         window.location.replace("../Kebantai-Homepage-Signed/index.html");
     }
-
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-    }).catch((error) => {
-        // An error happened.
-    });
 }
