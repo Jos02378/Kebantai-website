@@ -1,29 +1,9 @@
 let menuToggle = document.querySelector('.navigation-toggle');
 let rightTab = document.querySelector('.right-header-tab');
 let darkBackground = document.querySelector('.dark-background');
-let darkBackground2 = document.querySelector('.dark-background-2');
 
-let headerLogo = document.querySelector('.header-logo');
-let leftTab = document.querySelector('.left-header-tab');
-
-
-headerLogo.addEventListener('click', () => {
-    if (leftTab.classList.contains('active')) {
-      leftTab.classList.remove('active');
-      darkBackground.classList.remove('active');
-      headerLogo.classList.remove('active');
-      rightTab.classList.remove('active');
-    } else {
-      leftTab.classList.add('active');
-      darkBackground.classList.add('active');
-      headerLogo.classList.add('active');
-    }
-});
-  
 darkBackground.addEventListener('click', () => {
-    leftTab.classList.remove('active');
     darkBackground.classList.remove('active');
-    headerLogo.classList.remove('active');
     rightTab.classList.remove('active');
 });
   
@@ -99,3 +79,19 @@ for (let i = 0; i < cardToggles.length; i++) {
         card3.classList.toggle('active');
     })
 }
+
+let qrButton = document.querySelector('#qr-code-button')
+let modal = document.querySelector('.modal');
+let modalClose = document.querySelector('.modal-close');
+
+qrButton.addEventListener('click', () => {
+    modal.style.display = "unset";
+})
+
+modal.addEventListener('click', () => {
+  modal.style.display = "none";
+})
+
+modalClose.addEventListener('click', () => {
+  modal.style.display = "none";
+})

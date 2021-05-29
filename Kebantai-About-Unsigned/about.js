@@ -79,3 +79,19 @@ for (let i = 0; i < cardToggles.length; i++) {
         card3.classList.toggle('active');
     })
 }
+
+let qrButton = document.querySelector('#qr-code-button')
+let modal = document.querySelector('.modal');
+let modalClose = document.querySelector('.modal-close');
+
+qrButton.addEventListener('click', () => {
+    modal.style.display = "unset";
+})
+
+modal.addEventListener('click', () => {
+  modal.style.display = "none";
+})
+
+modalClose.addEventListener('click', () => {
+  modal.style.display = "none";
+})
