@@ -22,6 +22,7 @@ db.settings({
 
 let firebase_room_id = localStorage.getItem("room_id");
 let empty_content = document.querySelector(".empty-content");
+let main_content = document.querySelector(".content");
 var joined = true;
 
 db.collection("account").where(firebase.firestore.FieldPath.documentId(), "==", firebase_room_id)
@@ -29,7 +30,9 @@ db.collection("account").where(firebase.firestore.FieldPath.documentId(), "==", 
     querySnapshot.forEach((doc) => {
       if (doc.data().matches_created_join.length > 0) {
         empty_content.style.display = "none";
+        main_content.style.display = "flex";
       } else {
+        main_content.style.display = "none";
         empty_content.style.display = "flex";
         joined = false;
       }
@@ -56,7 +59,6 @@ setTimeout(() => {
       function () {
         document.querySelector(".modal-reason").style.display = 'none';
       });
-
 
     // HEADER BEHAVIOR
     let menuToggle = document.querySelector('.navigation-toggle');
