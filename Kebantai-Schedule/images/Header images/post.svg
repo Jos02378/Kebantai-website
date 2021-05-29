@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="57.074" height="57.074" viewBox="0 0 57.074 57.074">
-  <g id="Icon_feather-upload" data-name="Icon feather-upload" transform="translate(-1.5 -1.5)">
-    <path id="Path_5" data-name="Path 5" d="M55.574,22.5V33.85A5.675,5.675,0,0,1,49.9,39.525H10.175A5.675,5.675,0,0,1,4.5,33.85V22.5" transform="translate(0 16.049)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-    <path id="Path_6" data-name="Path 6" d="M38.875,18.687,24.687,4.5,10.5,18.687" transform="translate(5.35)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-    <path id="Path_7" data-name="Path 7" d="M18,4.5V38.549" transform="translate(12.037)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="102.614" height="117.303" viewBox="0 0 102.614 117.303">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="Icon_open-pin" data-name="Icon open-pin" class="cls-1" d="M19.643.021A7.423,7.423,0,1,0,21.989,14.68h7.33V44H14.659A14.7,14.7,0,0,0,0,58.657H43.977v43.977l6.45,14.659,8.209-14.659V58.657h43.977A14.7,14.7,0,0,0,87.955,44H73.3V14.68h7.33a7.33,7.33,0,0,0,0-14.659H21.989a7.33,7.33,0,0,0-1.319,0,7.329,7.329,0,0,0-.88,0Z" transform="translate(0 0.009)"/>
 </svg>
