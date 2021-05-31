@@ -299,10 +299,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -344,10 +345,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -389,10 +391,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -435,10 +438,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -482,11 +486,11 @@ selectedAll.forEach((selected) => {
                     if (change.type == 'added') {
                       let realtime_date_time = new Date();
                       let firebase_date = new Date(
-                        change.doc.data.date + ' ' + change.doc.data.time
+                        change.doc.data().date + ' ' + change.doc.data().time
                       );
                       let firebase_size =
-                        change.doc.data.matches_join.length + 1;
-                      let firebase_limit = change.doc.data.limit;
+                        change.doc.data().matches_join.length + 1;
+                      let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
                         firebase_date < realtime_date_time &&
@@ -534,11 +538,11 @@ selectedAll.forEach((selected) => {
                     if (change.type == 'added') {
                       let realtime_date_time = new Date();
                       let firebase_date = new Date(
-                        change.doc.data.date + ' ' + change.doc.data.time
+                        change.doc.data().date + ' ' + change.doc.data().time
                       );
                       let firebase_size =
-                        change.doc.data.matches_join.length + 1;
-                      let firebase_limit = change.doc.data.limit;
+                        change.doc.data().matches_join.length + 1;
+                      let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
                         firebase_date < realtime_date_time &&
@@ -584,10 +588,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -629,10 +634,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -674,10 +680,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -721,10 +728,11 @@ selectedAll.forEach((selected) => {
                   if (change.type == 'added') {
                     let realtime_date_time = new Date();
                     let firebase_date = new Date(
-                      change.doc.data.date + ' ' + change.doc.data.time
+                      change.doc.data().date + ' ' + change.doc.data().time
                     );
-                    let firebase_size = change.doc.data.matches_join.length + 1;
-                    let firebase_limit = change.doc.data.limit;
+                    let firebase_size =
+                      change.doc.data().matches_join.length + 1;
+                    let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
                       firebase_date < realtime_date_time &&
@@ -769,11 +777,11 @@ selectedAll.forEach((selected) => {
                     if (change.type == 'added') {
                       let realtime_date_time = new Date();
                       let firebase_date = new Date(
-                        change.doc.data.date + ' ' + change.doc.data.time
+                        change.doc.data().date + ' ' + change.doc.data().time
                       );
                       let firebase_size =
-                        change.doc.data.matches_join.length + 1;
-                      let firebase_limit = change.doc.data.limit;
+                        change.doc.data().matches_join.length + 1;
+                      let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
                         firebase_date < realtime_date_time &&
@@ -822,11 +830,11 @@ selectedAll.forEach((selected) => {
                     if (change.type == 'added') {
                       let realtime_date_time = new Date();
                       let firebase_date = new Date(
-                        change.doc.data.date + ' ' + change.doc.data.time
+                        change.doc.data().date + ' ' + change.doc.data().time
                       );
                       let firebase_size =
-                        change.doc.data.matches_join.length + 1;
-                      let firebase_limit = change.doc.data.limit;
+                        change.doc.data().matches_join.length + 1;
+                      let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
                         firebase_date < realtime_date_time &&
@@ -1032,7 +1040,6 @@ function renderMatch(doc) {
 }
 
 // CALL DATA TO FIREBASE
-
 db.collection('match')
   .where('sex', '==', sex_value)
   .orderBy('date')
@@ -1042,7 +1049,17 @@ db.collection('match')
     changes.forEach((change) => {
       if (change.type == 'added') {
         // CHECK IF THE OWNER FIELD EXISTS
-        if (change.doc.data().owner) {
+        let realtime_date_time = new Date();
+        let firebase_date = new Date(
+          change.doc.data().date + ' ' + change.doc.data().time
+        );
+        let firebase_size = change.doc.data().matches_join.length + 1;
+        let firebase_limit = change.doc.data().limit;
+        if (
+          change.doc.data().owner &&
+          firebase_date < realtime_date_time &&
+          firebase_size < firebase_limit
+        ) {
           renderMatch3(change.doc.data(), change.doc.id);
         }
       } else if (change.type === 'modified') {
