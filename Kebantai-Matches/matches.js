@@ -25,7 +25,6 @@ db.settings({
 const dbf = firebase.database();
 
 let firebase_room_id = localStorage.getItem("room_id");
-console.log("firebase_room_id", firebase_room_id);
 
 // HEADER BEHAVIOR
 let menuToggle = document.querySelector('.navigation-toggle');
@@ -268,7 +267,6 @@ selectedAll.forEach(selected => {
 
     optionsList.forEach(o => {
         o.addEventListener("click", () => {
-            // var date_current = new Date();
             if (previous_word != o.querySelector("label").innerHTML) {
                 if (sport_value == "all sport") {
                     if (selected_date.innerHTML == "All Date" && region_value == "all region") {
@@ -285,8 +283,11 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    let check_date = new Date(change.doc.data.date);
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -311,7 +312,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -336,7 +342,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -362,7 +373,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -389,7 +405,12 @@ selectedAll.forEach(selected => {
                                 let changes = snapshot.docChanges();
                                 changes.forEach(change => {
                                     if (change.type == "added") {
-                                        if (change.doc.data().owner) {
+                                        let realtime_date_time = new Date();
+                                        let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                        let firebase_size = change.doc.data.matches_join.length + 1;
+                                        let firebase_limit = change.doc.data.limit;
+                                        if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                             renderMatch3(change.doc.data(), change.doc.id);
                                         }
                                     } else if (change.type === "modified") {
@@ -419,7 +440,12 @@ selectedAll.forEach(selected => {
                                 let changes = snapshot.docChanges();
                                 changes.forEach(change => {
                                     if (change.type == "added") {
-                                        if (change.doc.data().owner) {
+                                        let realtime_date_time = new Date();
+                                        let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                        let firebase_size = change.doc.data.matches_join.length + 1;
+                                        let firebase_limit = change.doc.data.limit;
+                                        if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                             renderMatch3(change.doc.data(), change.doc.id);
                                         }
                                     } else if (change.type === "modified") {
@@ -448,7 +474,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -472,7 +503,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -497,7 +533,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -523,7 +564,12 @@ selectedAll.forEach(selected => {
                             let changes = snapshot.docChanges();
                             changes.forEach(change => {
                                 if (change.type == "added") {
-                                    if (change.doc.data().owner) {
+                                    let realtime_date_time = new Date();
+                                    let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                    let firebase_size = change.doc.data.matches_join.length + 1;
+                                    let firebase_limit = change.doc.data.limit;
+                                    if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                         renderMatch3(change.doc.data(), change.doc.id);
                                     }
                                 } else if (change.type === "modified") {
@@ -550,7 +596,12 @@ selectedAll.forEach(selected => {
                                 let changes = snapshot.docChanges();
                                 changes.forEach(change => {
                                     if (change.type == "added") {
-                                        if (change.doc.data().owner) {
+                                        let realtime_date_time = new Date();
+                                        let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                        let firebase_size = change.doc.data.matches_join.length + 1;
+                                        let firebase_limit = change.doc.data.limit;
+                                        if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                             renderMatch3(change.doc.data(), change.doc.id);
                                         }
                                     } else if (change.type === "modified") {
@@ -580,7 +631,12 @@ selectedAll.forEach(selected => {
                                 let changes = snapshot.docChanges();
                                 changes.forEach(change => {
                                     if (change.type == "added") {
-                                        if (change.doc.data().owner) {
+                                        let realtime_date_time = new Date();
+                                        let firebase_date = new Date(change.doc.data.date + " " + change.doc.data.time);
+                                        let firebase_size = change.doc.data.matches_join.length + 1;
+                                        let firebase_limit = change.doc.data.limit;
+                                        if (change.doc.data().owner && (firebase_date < realtime_date_time) && (firebase_size < firebase_limit)) {
+
                                             renderMatch3(change.doc.data(), change.doc.id);
                                         }
                                     } else if (change.type === "modified") {
@@ -597,7 +653,6 @@ selectedAll.forEach(selected => {
                     }
                 }
                 previous_word = o.querySelector("label").innerHTML;
-                // previous_time = time_value;
             }
         });
     });
@@ -941,10 +996,6 @@ function sortDiv() {
             let date1 = new Date(b[i].id);
             let date2 = new Date(b[i + 1].id);
 
-            // console.log(date1);
-            // console.log("-----")
-            // console.log(date2);
-
             if (date1 > date2) {
                 /* If next item is alphabetically lower than current item,
                 mark as a switch and break the loop: */
@@ -1117,7 +1168,6 @@ function renderMatch3(doc, id) {
         button_p.innerHTML = "Request";
         button_image.src = "./images/Right arrow.svg";
     }
-
 
     //display-color-identifier
     display_color_identifier.appendChild(icon);
@@ -1354,14 +1404,7 @@ document.addEventListener("click", () => {
             let textarea = reason.parentNode.querySelector("textarea");
             if (textarea.value.length < 20) {
                 let errorBox = document.querySelector('.error');
-
                 errorBox.style.display = "flex";
-
-                // for (let i = 0; i < errorClose.length; i++) {
-                //     errorClose[i].addEventListener('click', () => {
-                //         errorBox[i].style.display = "unset";
-                //     });
-                // }
             } else {
                 let button_change = document.getElementById("selected_button");
                 let button_parent = button_change.parentNode;
@@ -1370,8 +1413,6 @@ document.addEventListener("click", () => {
                 // GET THE NEW VALUE OF PLAYERS (buat chat)
                 let amountPlayers = button_parent.querySelector('.display-amount').querySelector('p').innerHTML;
                 let numOfPlayers = parseInt(amountPlayers.split('/')[0]) + 1;
-                console.log(numOfPlayers);
-
 
                 // UPDATE DATA TO FIRESTORE
                 db.collection('match').doc(button_parent.getAttribute("data-id")).update({
@@ -1412,17 +1453,17 @@ document.addEventListener("click", () => {
             e.preventDefault();
             let textarea = reason.parentNode.querySelector("textarea");
             if (textarea.value.length < 20) {
-                console.log("Enter 20 CHARACTERS");
+
             } else {
                 let button_chosen = document.getElementById("selected_button");
                 let button_parent_data_id = button_chosen.parentNode.getAttribute("data-id");
 
-                // // DELETE OWNER FIELD AND ADD STATUS FIELD
-                // db.collection('match').doc(button_parent_data_id).set({
-                //     reason: textarea.value.trim()
-                // }, {
-                //     merge: true
-                // });
+                // DELETE OWNER FIELD AND ADD STATUS FIELD
+                db.collection('match').doc(button_parent_data_id).set({
+                    reason: textarea.value.trim()
+                }, {
+                    merge: true
+                });
 
                 let reason = textarea.value.trim();
                 let reason_final = `***************************************************************************\n\nTHE OWNER HAS CANCELLED THE EVENT!\n\nThe owner's reason: ${reason}\n\n***************************************************************************`;
@@ -1443,11 +1484,11 @@ document.addEventListener("click", () => {
                 let updatedtime = current_full_date.setDate(current_full_date.getDate() + 1);
                 let finaltime = new Date(updatedtime);
 
-                // db.collection('match').doc(button_parent_data_id).update({
-                //     owner: firebase.firestore.FieldValue.delete(),
-                //     status: "deleted",
-                //     date: finaltime
-                // });
+                db.collection('match').doc(button_parent_data_id).update({
+                    owner: firebase.firestore.FieldValue.delete(),
+                    status: "deleted",
+                    date: finaltime
+                });
 
                 // REMOVE ELEMENT FROM PARENT
                 let button_selected = document.getElementById("selected_button");
@@ -1485,38 +1526,31 @@ let difference_seconds = 60 - current_seconds;
 
 setTimeout(function () {
     var d = new Date();
-    console.log(d.toLocaleTimeString());
-    // var myVar = setInterval(deleteChild, 60000);
+    var myVar = setInterval(deleteChild, 60000);
 
     // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE FOR SUCCESS
-    // db.collection("match").where("status", "==", "success").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(doc.id);
-    //         let current_time = new Date();
+    db.collection("match").where("status", "==", "success").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            let current_time = new Date();
 
-    //         if (doc.data().date < current_time) {
-    //             dbf.ref('all_chats' + `/${doc.id}`).remove();
-    //             db.collection("match").doc(doc.id).delete().then(() => {
-    //                 console.log("Document successfully deleted!");
-    //             })
-    //         }
-    //     });
-    // })
+            if (doc.data().date < current_time) {
+                dbf.ref('all_chats' + `/${doc.id}`).remove();
+                db.collection("match").doc(doc.id).delete().then(() => {})
+            }
+        });
+    })
 
     // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE FOR DELETED
-    // db.collection("match").where("status", "==", "deleted").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(doc.id);
-    //         let current_time = new Date();
+    db.collection("match").where("status", "==", "deleted").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            let current_time = new Date();
 
-    //         if (doc.data().date < current_time) {
-    //             dbf.ref('all_chats' + `/${doc.id}`).remove();
-    //             db.collection("match").doc(doc.id).delete().then(() => {
-    //                 console.log("Document successfully deleted!");
-    //             })
-    //         }
-    //     });
-    // })
+            if (doc.data().date < current_time) {
+                dbf.ref('all_chats' + `/${doc.id}`).remove();
+                db.collection("match").doc(doc.id).delete().then(() => {})
+            }
+        });
+    })
 
     //DELETE CHILD AND CHECK IF THERE IS STILL A CHILD
     var div_top = document.querySelector(".display-container").childNodes;
@@ -1526,40 +1560,35 @@ setTimeout(function () {
         var top_on_the_list = new Date(div_top[1].id);
 
         if (top_on_the_list < date_current) {
-            console.log(div_top[1].id);
-            console.log(top_on_the_list);
-            console.log(date_current);
-            console.log("it is smaller");
             var child = ul_top.lastElementChild;
 
             // REMOVE LI
             while (child) {
-                // // DELETE OWNER FIELD
-                // var child_room_id = child.getAttribute("data-id");
-                // console.log(child_room_id);
+                // DELETE OWNER FIELD
+                var child_room_id = child.getAttribute("data-id");
 
-                // // GET DATE + 2 HOURS FROM TODAY
-                // let current_full_date = new Date();
-                // let updatedtime = current_full_date.setHours(current_full_date.getHours() + 2);
-                // let finaltime = new Date(updatedtime);
+                // GET DATE + 2 HOURS FROM TODAY
+                let current_full_date = new Date();
+                let updatedtime = current_full_date.setHours(current_full_date.getHours() + 2);
+                let finaltime = new Date(updatedtime);
 
-                // db.collection("match").doc(child_room_id).update({
-                //     owner: firebase.firestore.FieldValue.delete(),
-                //     status: "success",
-                //     date: finaltime
-                // });
+                db.collection("match").doc(child_room_id).update({
+                    owner: firebase.firestore.FieldValue.delete(),
+                    status: "success",
+                    date: finaltime
+                });
 
                 // ADD MESSAGE TO THE DATABASE
-                // let room_id = child.getAttribute("data-id");
-                // dbf.ref('all_chats' + `/${room_id}`).once('value', function (message_object) {
-                //     // This index is mortant. It will help organize the chat in order
-                //     var index = parseFloat(message_object.numChildren()) + 1
-                //     dbf.ref('all_chats' + `/${room_id}` + `/message_${index}`).set({
-                //         name: "SYSTEM",
-                //         message: `***************************************************************************\n\nThank you for using our services. This chat will be deleted in 2 more hours. We hope that you have a great experience using our service!\n\n***************************************************************************`,
-                //         index: index
-                //     })
-                // })
+                let room_id = child.getAttribute("data-id");
+                dbf.ref('all_chats' + `/${room_id}`).once('value', function (message_object) {
+                    // This index is mortant. It will help organize the chat in order
+                    var index = parseFloat(message_object.numChildren()) + 1
+                    dbf.ref('all_chats' + `/${room_id}` + `/message_${index}`).set({
+                        name: "SYSTEM",
+                        message: `***************************************************************************\n\nThank you for using our services. This chat will be deleted in 2 more hours. We hope that you have a great experience using our service!\n\n***************************************************************************`,
+                        index: index
+                    })
+                })
 
                 // DELETE ROOM IN WEB CLIENT
                 ul_top.removeChild(child);
@@ -1569,16 +1598,11 @@ setTimeout(function () {
         // // REMOVE DIV
         document.querySelector(".display-container").removeChild(div_top[1]);
 
-    } else {
-        console.log(top_on_the_list);
-        console.log(date_current);
-        console.log("it is larger");
     }
 }, difference_seconds * 1000);
 
 function deleteChild() {
-    var d = new Date();
-    console.log(d.toLocaleTimeString());
+    var d = new Date()
 
     // DELETE CHILD AND CHECK IF THERE IS STILL A CHILD 
     var div_top = document.querySelector(".display-container").childNodes;
@@ -1588,17 +1612,13 @@ function deleteChild() {
         var top_on_the_list = new Date(div_top[1].id);
 
         if (top_on_the_list < date_current) {
-            console.log(div_top[1].id);
-            console.log(top_on_the_list);
-            console.log(date_current);
-            console.log("it is smaller");
             var child = ul_top.lastElementChild;
 
             // REMOVE LI
             while (child) {
                 // DELETE OWNER FIELD
                 var child_room_id = child.getAttribute("data-id");
-                console.log(child_room_id);
+
                 db.collection("match").doc(child_room_id).update({
                     owner: firebase.firestore.FieldValue.delete()
                 });
@@ -1610,30 +1630,25 @@ function deleteChild() {
             // // REMOVE DIV
             document.querySelector(".display-container").removeChild(div_top[1]);
 
-        } else {
-            console.log(top_on_the_list);
-            console.log(date_current);
-            console.log("it is larger");
         }
     }
 }
 
 // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE
 function deleteDocument() {
-    var d = new Date();
-    console.log(d.toLocaleTimeString());
+    var d = new Date()
 
-    // db.collection("match").where("status", "==", "success").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(doc.id);
-    //         let current_time = new Date();
+    db.collection("match").where("status", "==", "success").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
 
-    //         if (doc.data().date < current_time) {
-    //             db.collection("match").doc(doc.id).delete().then(() => {
-    //                 console.log("Document successfully deleted!");
-    //             })
-    //             dbf.ref('all_chats' + `/${doc.id}`).remove();
-    //         }
-    //     });
-    // })
+            let current_time = new Date();
+
+            if (doc.data().date < current_time) {
+                db.collection("match").doc(doc.id).delete().then(() => {
+
+                })
+                dbf.ref('all_chats' + `/${doc.id}`).remove();
+            }
+        });
+    })
 }
