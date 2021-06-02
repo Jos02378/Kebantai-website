@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
-  font-family: "LemonMilk";
+  font-family: 'LemonMilk';
   src: url(../../fonts/LemonMilk.otf);
 }
 
@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
 }
 
@@ -26,6 +26,7 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  display: none;
 }
 
 a {
@@ -115,7 +116,7 @@ a {
   margin: 0.5rem 0.2rem;
   border-radius: 15px;
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
-  background: #292A45;
+  background: #292a45;
 
   display: flex;
   /* justify-content: space-between; */
@@ -134,7 +135,7 @@ a {
 
 #display-basketball .display-title {
   color: #ffc833;
-  text-shadow: 0px 0px 5px rgba(254,187,47,0.3);
+  text-shadow: 0px 0px 5px rgba(254, 187, 47, 0.3);
 }
 
 #display-basketball .display-color-identifier img {
@@ -283,7 +284,7 @@ a {
 
 .display-item
   .display-location
-  .display-place[style*="text-overflow: ellipsis"]:hover {
+  .display-place[style*='text-overflow: ellipsis']:hover {
   overflow: visible;
   white-space: normal;
   text-overflow: unset;
@@ -309,7 +310,7 @@ a {
 
 .display-item
   .display-location
-  .display-address[style*="text-overflow: ellipsis"]:hover {
+  .display-address[style*='text-overflow: ellipsis']:hover {
   overflow: visible;
   white-space: normal;
   text-overflow: unset;
@@ -437,9 +438,9 @@ a {
   left: 50%;
   top: 20%;
   transform: translate(-50%);
-  background: #2A2C42;
+  background: #2a2c42;
   border-radius: 30px;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   padding: 40px;
 
   display: none;
@@ -486,10 +487,10 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-#application-textarea:focus, 
+#application-textarea:focus,
 #application-textarea:hover {
   outline: none;
-  border: 1px solid  #ffc833;
+  border: 1px solid #ffc833;
 }
 
 .application-submit {
@@ -535,9 +536,9 @@ a {
   left: 50%;
   top: 20%;
   transform: translate(-50%);
-  background: #2A2C42;
+  background: #2a2c42;
   border-radius: 30px;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   padding: 40px;
 
   display: flex;
@@ -584,7 +585,7 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-.modal-reason #modal-textarea:focus, 
+.modal-reason #modal-textarea:focus,
 .modal-reason #modal-textarea:hover {
   outline: none;
   border: 1px solid #ff3b3b;
@@ -755,85 +756,85 @@ a {
 }
 
 @media (max-width: 991px) {
-    .display-container {
-      min-width: 85%;
-    }
-  
-    .display-list {
-      padding: 0px;
-      align-items: center;
-    }
-  
-    .display-list li {
-      width: 95%;
-      padding: 0px;
-    }
-  
-    .display-item .display-color-identifier {
-      width: 60px;
-    }
-  
-    .display-item .display-text {
-      /* flex-shrink: 0; */
-      width: 160px;
-    }
-  
-    .display-item .display-text .display-title {
-      font-size: 19px;
-      letter-spacing: 0.5px;
-    }
-  
-    .display-item .display-text .display-amount {
-      font-size: 12px;
-    }
-  
-    .display-item .display-text .display-amount img {
-      width: 13px;
-      height: 13px;
-      margin: 0px 6px 1px 0px;
-    }
-  
-    .display-item .display-bar {
-      flex-shrink: 0;
-    }
-  
-    .display-item .display-location {
-      min-width: 150px;
-    }
-  
-    .display-item .display-location .display-place {
-      font-size: 14px;
-    }
-  
-    .display-item .display-location .display-address {
-      font-size: 11px;
-    }
-  
-    .display-item .display-peoplepref .display-sex-text {
-      font-size: 8px;
-      font-weight: 400;
-    }
-  
-    .display-item button {
-      margin-left: 15px;
-      margin-right: 15px;
-      width: 100px;
-    }
-    
-    .display-item button img {
-      display: none;
-    }
+  .display-container {
+    min-width: 85%;
+  }
 
-    .error-box {
-      height: 55px;
-    }
-  
-    .error-icon {
-      width: 60px;
-      height: 60px;
-      left: -10px;
-      bottom: -8px;
-    }
+  .display-list {
+    padding: 0px;
+    align-items: center;
+  }
+
+  .display-list li {
+    width: 95%;
+    padding: 0px;
+  }
+
+  .display-item .display-color-identifier {
+    width: 60px;
+  }
+
+  .display-item .display-text {
+    /* flex-shrink: 0; */
+    width: 160px;
+  }
+
+  .display-item .display-text .display-title {
+    font-size: 19px;
+    letter-spacing: 0.5px;
+  }
+
+  .display-item .display-text .display-amount {
+    font-size: 12px;
+  }
+
+  .display-item .display-text .display-amount img {
+    width: 13px;
+    height: 13px;
+    margin: 0px 6px 1px 0px;
+  }
+
+  .display-item .display-bar {
+    flex-shrink: 0;
+  }
+
+  .display-item .display-location {
+    min-width: 150px;
+  }
+
+  .display-item .display-location .display-place {
+    font-size: 14px;
+  }
+
+  .display-item .display-location .display-address {
+    font-size: 11px;
+  }
+
+  .display-item .display-peoplepref .display-sex-text {
+    font-size: 8px;
+    font-weight: 400;
+  }
+
+  .display-item button {
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 100px;
+  }
+
+  .display-item button img {
+    display: none;
+  }
+
+  .error-box {
+    height: 55px;
+  }
+
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    left: -10px;
+    bottom: -8px;
+  }
 }
 
 @media (max-width: 760px) {

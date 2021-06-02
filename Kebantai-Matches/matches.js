@@ -1,3 +1,12 @@
+let check_information = sessionStorage.getItem('verify_email_signup');
+
+if (!check_information) {
+  location.replace('../Kebantai-Log-In/login.html');
+} else {
+  let body = document.querySelector('body');
+  body.style.display = 'unset';
+}
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {

@@ -1,8 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
-  font-family: "LemonMilk";
+  font-family: 'LemonMilk';
   src: url(../../fonts/LemonMilk.otf);
+}
+
+body {
+  display: none;
 }
 
 button:focus {
@@ -13,7 +17,7 @@ button:focus {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
   list-style: none;
   text-decoration: none;
@@ -69,7 +73,7 @@ body {
 }
 
 .select-box .options-box {
-  background: #292A45;
+  background: #292a45;
   width: 100%;
   max-height: 0;
   opacity: 0;
@@ -83,7 +87,7 @@ body {
 }
 
 .selected {
-  background: #292A45;
+  background: #292a45;
   border-radius: 10px;
   margin-bottom: 20px;
 
@@ -92,7 +96,7 @@ body {
 }
 
 .selected::after {
-  content: "";
+  content: '';
   background: url(../images/arrow-down.svg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -170,7 +174,7 @@ body {
   margin-top: 40px;
   min-width: 170px;
   height: 150px;
-  background: #292A45;
+  background: #292a45;
   border-radius: 10px;
   padding: 6px 0px;
 
@@ -249,7 +253,7 @@ body {
   margin: 0.5rem 0.2rem;
   border-radius: 15px;
   box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.5);
-  background: #292A45;
+  background: #292a45;
 
   display: flex;
   /* justify-content: space-between; */
@@ -268,7 +272,7 @@ body {
 
 #display-basketball .display-title {
   color: #ffc833;
-  text-shadow: 0px 0px 5px rgba(254,187,47,0.3);
+  text-shadow: 0px 0px 5px rgba(254, 187, 47, 0.3);
 }
 
 #display-basketball .display-color-identifier img {
@@ -417,7 +421,7 @@ body {
 
 .display-item
   .display-location
-  .display-place[style*="text-overflow: ellipsis"]:hover {
+  .display-place[style*='text-overflow: ellipsis']:hover {
   overflow: visible;
   white-space: normal;
   text-overflow: unset;
@@ -443,7 +447,7 @@ body {
 
 .display-item
   .display-location
-  .display-address[style*="text-overflow: ellipsis"]:hover {
+  .display-address[style*='text-overflow: ellipsis']:hover {
   overflow: visible;
   white-space: normal;
   text-overflow: unset;
@@ -571,9 +575,9 @@ body {
   left: 50%;
   top: 20%;
   transform: translate(-50%);
-  background: #2A2C42;
+  background: #2a2c42;
   border-radius: 30px;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   padding: 40px;
 
   display: flex;
@@ -620,10 +624,10 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-#application-textarea:focus, 
+#application-textarea:focus,
 #application-textarea:hover {
   outline: none;
-  border: 1px solid  #ffc833;
+  border: 1px solid #ffc833;
 }
 
 .application-submit {
@@ -669,9 +673,9 @@ body {
   left: 50%;
   top: 20%;
   transform: translate(-50%);
-  background: #2A2C42;
+  background: #2a2c42;
   border-radius: 7px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
   padding: 30px 40px 20px;
 
   display: flex;
@@ -719,13 +723,13 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.modal-application #modal-textarea:focus, 
+.modal-application #modal-textarea:focus,
 .modal-application #modal-textarea:hover {
   outline: none;
-  border: 1px solid  #ffc833;
+  border: 1px solid #ffc833;
 }
 
-.modal-reason #modal-textarea:focus, 
+.modal-reason #modal-textarea:focus,
 .modal-reason #modal-textarea:hover {
   outline: none;
   border: 1px solid #ff3b3b;
@@ -785,7 +789,7 @@ body {
   margin-bottom: 4vh;
 }
 
-#date_time_error{
+#date_time_error {
   display: none;
 }
 
@@ -868,7 +872,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #292A45;
+    background: #292a45;
     width: 280px;
     height: 40px;
     /* margin-left: 1rem; */
@@ -905,7 +909,7 @@ body {
     transform: translate(-50%);
     height: 40px;
     background: #ffc833;
-    box-shadow: 0px 0px 10px rgba(254,187,47,0.5);
+    box-shadow: 0px 0px 10px rgba(254, 187, 47, 0.5);
     transition: transform 0.25s ease-in-out;
     z-index: 11;
   }
@@ -929,7 +933,7 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: white;
-    text-shadow: 0px 0px 4px rgba(255,255,255,0.3);
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.3);
   }
 
   .filter.active {

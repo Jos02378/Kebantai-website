@@ -1,15 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
-  font-family: "LemonMilk";
+  font-family: 'LemonMilk';
   src: url(../../fonts/LemonMilk.otf);
+}
+
+body {
+  display: none;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
 }
 
@@ -17,7 +21,7 @@ button:focus {
   outline: none;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   display: none;
 }
 
@@ -71,7 +75,7 @@ body {
 }
 
 .progress-bar::before {
-  content: "";
+  content: '';
   width: 78vw;
   height: 1px;
   position: absolute;
@@ -385,7 +389,7 @@ body {
 }
 
 .checkmark:after {
-  content: "";
+  content: '';
   position: absolute;
   display: none;
 }
@@ -522,7 +526,7 @@ body {
 }
 
 .option-selected::after {
-  content: "";
+  content: '';
   background: url(../images/arrow-down.svg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -719,7 +723,6 @@ body {
 }
 
 @media (max-width: 1024px) {
-
   .hours {
     width: 430px;
     padding: 10px 15px;

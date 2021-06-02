@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 @font-face {
-  font-family: "LemonMilk";
+  font-family: 'LemonMilk';
   src: url(../../fonts/LemonMilk.otf);
 }
 
@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
 }
 
@@ -476,9 +476,9 @@ section {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: #2A2C42;
+  background: #2a2c42;
   border-radius: 7px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
 
   display: grid;
   place-items: center;

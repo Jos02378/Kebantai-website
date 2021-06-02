@@ -1,14 +1,23 @@
+let check_information = sessionStorage.getItem('verify_email_signup');
+
+if (!check_information) {
+  location.replace('../Kebantai-Log-In/login.html');
+} else {
+  let body = document.querySelector('body');
+  body.style.display = 'unset';
+}
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
-  apiKey: "AIzaSyCVQiH2DSjYOiRrsmgaSRTObEWkGpHm1sA",
-  authDomain: "kebantai2020.firebaseapp.com",
-  databaseURL: "https://kebantai2020-default-rtdb.firebaseio.com",
-  projectId: "kebantai2020",
-  storageBucket: "kebantai2020.appspot.com",
-  messagingSenderId: "290266641346",
-  appId: "1:290266641346:web:85b99043fe87f7795a1c5b",
-  measurementId: "G-M3H7QJBJGQ"
+  apiKey: 'AIzaSyCVQiH2DSjYOiRrsmgaSRTObEWkGpHm1sA',
+  authDomain: 'kebantai2020.firebaseapp.com',
+  databaseURL: 'https://kebantai2020-default-rtdb.firebaseio.com',
+  projectId: 'kebantai2020',
+  storageBucket: 'kebantai2020.appspot.com',
+  messagingSenderId: '290266641346',
+  appId: '1:290266641346:web:85b99043fe87f7795a1c5b',
+  measurementId: 'G-M3H7QJBJGQ',
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -17,23 +26,58 @@ firebase.analytics();
 //Initialize Firestore
 const db = firebase.firestore();
 db.settings({
-  timestampsInSnapshots: true
+  timestampsInSnapshots: true,
 });
 
-let firebase_room_id = localStorage.getItem("room_id");
-let empty_content = document.querySelector(".empty-content");
-let main_content = document.querySelector(".content");
+// HEADER BEHAVIOR
+let menuToggle = document.querySelector('.navigation-toggle');
+let rightTab = document.querySelector('.right-header-tab');
+let darkBackground = document.querySelector('.dark-background');
+
+let headerLogo = document.querySelector('.header-logo');
+let leftTab = document.querySelector('.left-header-tab');
+
+headerLogo.addEventListener('click', () => {
+  if (leftTab.classList.contains('active')) {
+    leftTab.classList.remove('active');
+    darkBackground.classList.remove('active');
+    headerLogo.classList.remove('active');
+    rightTab.classList.remove('active');
+  } else {
+    leftTab.classList.add('active');
+    darkBackground.classList.add('active');
+    headerLogo.classList.add('active');
+  }
+});
+
+darkBackground.addEventListener('click', () => {
+  leftTab.classList.remove('active');
+  darkBackground.classList.remove('active');
+  headerLogo.classList.remove('active');
+
+  rightTab.classList.remove('active');
+});
+
+menuToggle.addEventListener('click', () => {
+  rightTab.classList.add('active');
+  darkBackground.classList.add('active');
+});
+
+let firebase_room_id = localStorage.getItem('room_id');
+let empty_content = document.querySelector('.empty-content');
+let main_content = document.querySelector('.content');
 var joined = true;
 
-db.collection("account").where(firebase.firestore.FieldPath.documentId(), "==", firebase_room_id)
+db.collection('account')
+  .where(firebase.firestore.FieldPath.documentId(), '==', firebase_room_id)
   .onSnapshot((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       if (doc.data().matches_created_join.length > 0) {
-        empty_content.style.display = "none";
-        main_content.style.display = "flex";
+        empty_content.style.display = 'none';
+        main_content.style.display = 'flex';
       } else {
-        main_content.style.display = "none";
-        empty_content.style.display = "flex";
+        main_content.style.display = 'none';
+        empty_content.style.display = 'flex';
         joined = false;
       }
     });
@@ -42,12 +86,11 @@ db.collection("account").where(firebase.firestore.FieldPath.documentId(), "==", 
 setTimeout(() => {
   console.log(joined);
   if (joined) {
-    const modalReason = document.querySelectorAll(".display-delete");
+    const modalReason = document.querySelectorAll('.display-delete');
     for (var i = 0; i < modalReason.length; i++) {
-      modalReason[i].addEventListener('click',
-        function () {
-          document.querySelector(".modal-reason").style.display = 'flex';
-        });
+      modalReason[i].addEventListener('click', function () {
+        document.querySelector('.modal-reason').style.display = 'flex';
+      });
     }
 
     // document.querySelector(".modal-close-application").addEventListener('click',
@@ -55,54 +98,21 @@ setTimeout(() => {
     //     document.querySelector(".modal-application").style.display = 'none';
     // });
 
-    document.querySelector(".modal-close-reason").addEventListener('click',
-      function () {
-        document.querySelector(".modal-reason").style.display = 'none';
+    document
+      .querySelector('.modal-close-reason')
+      .addEventListener('click', function () {
+        document.querySelector('.modal-reason').style.display = 'none';
       });
 
-    // HEADER BEHAVIOR
-    let menuToggle = document.querySelector('.navigation-toggle');
-    let rightTab = document.querySelector('.right-header-tab');
-    let darkBackground = document.querySelector('.dark-background');
-
-    let headerLogo = document.querySelector('.header-logo');
-    let leftTab = document.querySelector('.left-header-tab');
-
-    headerLogo.addEventListener('click', () => {
-      if (leftTab.classList.contains('active')) {
-        leftTab.classList.remove('active');
-        darkBackground.classList.remove('active');
-        headerLogo.classList.remove('active');
-        rightTab.classList.remove('active');
-      } else {
-        leftTab.classList.add('active');
-        darkBackground.classList.add('active');
-        headerLogo.classList.add('active');
-      }
-    });
-
-    darkBackground.addEventListener('click', () => {
-      leftTab.classList.remove('active');
-      darkBackground.classList.remove('active');
-      headerLogo.classList.remove('active');
-
-      rightTab.classList.remove('active');
-    });
-
-    menuToggle.addEventListener('click', () => {
-      rightTab.classList.add('active');
-      darkBackground.classList.add('active');
-    });
-
     // ERRORS
-    let error = document.querySelector(".error");
-    let error_text = document.querySelector(".error-text");
+    let error = document.querySelector('.error');
+    let error_text = document.querySelector('.error-text');
     let errorClose = document.querySelector('.error-circle');
     let errorBox = document.querySelector('.error-box');
 
     for (let i = 0; i < errorClose.length; i++) {
       errorClose[i].addEventListener('click', () => {
-        errorBox[i].style.display = "none";
+        errorBox[i].style.display = 'none';
       });
     }
 
@@ -110,71 +120,81 @@ setTimeout(() => {
     // FIREBASE
     */
 
-    db.collection('account').doc(firebase_room_id).get().then(function (doc) {
-      let matches_join_created = doc.data().matches_created_join;
+    db.collection('account')
+      .doc(firebase_room_id)
+      .get()
+      .then(function (doc) {
+        let matches_join_created = doc.data().matches_created_join;
 
-      db.collection('match').where(firebase.firestore.FieldPath.documentId(), 'in', matches_join_created).get().then((snapshot) => {
-        snapshot.docs.forEach(dok => {
-          if (dok.data().owner) {
-            renderMatch3(dok.data(), dok.id);
-          }
-        })
-      })
-    })
+        db.collection('match')
+          .where(
+            firebase.firestore.FieldPath.documentId(),
+            'in',
+            matches_join_created
+          )
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.forEach((dok) => {
+              if (dok.data().owner) {
+                renderMatch3(dok.data(), dok.id);
+              }
+            });
+          });
+      });
 
-    const display_container = document.querySelector(".display-container");
+    const display_container = document.querySelector('.display-container');
 
     const objectOfDays = {
-      "Mon": "Monday",
-      "Tue": "Tuesday",
-      "Wed": "Wednesday",
-      "Thu": "Thursday",
-      "Fri": "Friday",
-      "Sat": "Saturday",
-      "Sun": "Sunday",
+      Mon: 'Monday',
+      Tue: 'Tuesday',
+      Wed: 'Wednesday',
+      Thu: 'Thursday',
+      Fri: 'Friday',
+      Sat: 'Saturday',
+      Sun: 'Sunday',
     };
 
     function renderMatch3(doc, id) {
       //MAIN DIV
       let display_content_per_date = document.createElement('div');
-      display_content_per_date.className = "display-content-per-date";
-      display_content_per_date.id = doc.date + " " + doc.time;
+      display_content_per_date.className = 'display-content-per-date';
+      display_content_per_date.id = doc.date + ' ' + doc.time;
 
       //DATE AND UL
       let date = document.createElement('h4');
       let display_list = document.createElement('ul');
 
-      date.className = "display-date";
-      display_list.className = "display-list";
+      date.className = 'display-date';
+      display_list.className = 'display-list';
       let date_text = doc.date;
-      let date_split = date_text.split(" ");
+      let date_split = date_text.split(' ');
       let full_day = objectOfDays[date_split[0]];
       let date_final = date_split.splice(1, 2);
-      let date_join = date_final.join(" ");
-      date.innerHTML = full_day + " " + date_join + ", " + doc.time + " WIB";
-      display_list.id = full_day + " " + date_join + ", " + doc.time + " WIB";
+      let date_join = date_final.join(' ');
+      date.innerHTML = full_day + ' ' + date_join + ', ' + doc.time + ' WIB';
+      display_list.id = full_day + ' ' + date_join + ', ' + doc.time + ' WIB';
 
       //LI
       let display_item = document.createElement('li');
-      display_item.className = "display-item";
+      display_item.className = 'display-item';
 
       //SPORT'S ICON
       let display_color_identifier = document.createElement('div');
       let icon = document.createElement('img');
-      display_color_identifier.className = "display-color-identifier";
+      display_color_identifier.className = 'display-color-identifier';
 
-      if (doc.sport == "basketball") {
-        icon.src = "./images/basketball2.svg";
-        display_item.id = "display-basketball";
-      } else if (doc.sport == "soccer") {
-        icon.src = "./images/soccer2.svg";
-        display_item.id = "display-soccer";
-      } else if (doc.sport == "badminton") {
-        icon.src = "./images/badminton2.svg";
-        display_item.id = "display-badminton";
-      } else if (doc.sport == "volleyball") {
-        icon.src = "./images/volleyball2.svg";
-        display_item.id = "display-volleyball";
+      if (doc.sport == 'basketball') {
+        icon.src = './images/basketball2.svg';
+        display_item.id = 'display-basketball';
+      } else if (doc.sport == 'soccer') {
+        icon.src = './images/soccer2.svg';
+        display_item.id = 'display-soccer';
+      } else if (doc.sport == 'badminton') {
+        icon.src = './images/badminton2.svg';
+        display_item.id = 'display-badminton';
+      } else if (doc.sport == 'volleyball') {
+        icon.src = './images/volleyball2.svg';
+        display_item.id = 'display-volleyball';
       }
 
       //EVENT NAME, AMOUNT OF PLAYERS, GENDER
@@ -185,27 +205,27 @@ setTimeout(() => {
       let p = document.createElement('p');
       let display_peoplepref2 = document.createElement('p');
 
-      display_text.className = "display-text";
-      display_title.className = "display-title";
-      display_amount.className = "display-amount";
+      display_text.className = 'display-text';
+      display_title.className = 'display-title';
+      display_amount.className = 'display-amount';
 
-      img.src = "./images/group.svg";
+      img.src = './images/group.svg';
       display_title.innerHTML = doc.event_name;
       p.innerHTML = `${doc.matches_join.length + 1} / ${parseInt(doc.limit)}`;
 
       //DISPLAY BAR
       let display_bar = document.createElement('div');
-      display_bar.className = "display-bar";
+      display_bar.className = 'display-bar';
 
       //DISPLAY LOCATION
       let display_location = document.createElement('div');
       let display_place = document.createElement('p');
       let display_address = document.createElement('p');
 
-      display_location.className = "display-location";
-      display_place.className = "display-place";
-      display_place.style.textOverflow = "ellipsis";
-      display_address.className = "display-address";
+      display_location.className = 'display-location';
+      display_place.className = 'display-place';
+      display_place.style.textOverflow = 'ellipsis';
+      display_address.className = 'display-address';
 
       display_place.innerHTML = doc.location;
       display_address.innerHTML = doc.address;
@@ -216,44 +236,44 @@ setTimeout(() => {
       let img_gender = document.createElement('img');
       let display_sex_text = document.createElement('p');
 
-      display_sex_icon.className = "display-sex-icon";
-      display_sex_text.className = "display-sex-text";
+      display_sex_icon.className = 'display-sex-icon';
+      display_sex_text.className = 'display-sex-text';
 
       //BUTTON
       let button = document.createElement('button');
       let button_p = document.createElement('p');
       let button_image = document.createElement('img');
 
-      button_p.className = "button_p";
-      button_image.className = "button_image";
+      button_p.className = 'button_p';
+      button_image.className = 'button_image';
 
       //CLASS BUTTON TERGANTUNG ACTION
-      button.setAttribute("type", "submit");
+      button.setAttribute('type', 'submit');
 
       //SET ID FIREBASE KE LI
-      display_item.setAttribute("data-id", id);
+      display_item.setAttribute('data-id', id);
 
       if (doc.sex == 'male') {
-        display_peoplepref2.className = "display-peoplepref2 display-male2";
-        display_peoplepref2.innerHTML = "male only";
-        img_gender.src = "./images/male.svg";
-        img_gender.alt = "malesign";
-        display_peoplepref.className = "display-peoplepref display-male";
-        display_sex_text.innerHTML = "male only";
+        display_peoplepref2.className = 'display-peoplepref2 display-male2';
+        display_peoplepref2.innerHTML = 'male only';
+        img_gender.src = './images/male.svg';
+        img_gender.alt = 'malesign';
+        display_peoplepref.className = 'display-peoplepref display-male';
+        display_sex_text.innerHTML = 'male only';
       } else if (doc.sex == 'female') {
-        display_peoplepref2.className = "display-peoplepref2 display-female2";
-        display_peoplepref2.innerHTML = "female only";
-        img_gender.src = "./images/female.svg";
-        img_gender.alt = "femalesign";
-        display_peoplepref.className = "display-peoplepref display-female";
-        display_sex_text.innerHTML = "female only";
+        display_peoplepref2.className = 'display-peoplepref2 display-female2';
+        display_peoplepref2.innerHTML = 'female only';
+        img_gender.src = './images/female.svg';
+        img_gender.alt = 'femalesign';
+        display_peoplepref.className = 'display-peoplepref display-female';
+        display_sex_text.innerHTML = 'female only';
       } else if (doc.sex == 'anyone') {
-        display_peoplepref2.className = "display-peoplepref2 display-anysex2";
-        display_peoplepref2.innerHTML = "anyone can join";
-        img_gender.src = "./images/anysex.svg";
-        img_gender.alt = "unisex";
-        display_peoplepref.className = "display-peoplepref display-anysex";
-        display_sex_text.innerHTML = "anyone";
+        display_peoplepref2.className = 'display-peoplepref2 display-anysex2';
+        display_peoplepref2.innerHTML = 'anyone can join';
+        img_gender.src = './images/anysex.svg';
+        img_gender.alt = 'unisex';
+        display_peoplepref.className = 'display-peoplepref display-anysex';
+        display_sex_text.innerHTML = 'anyone';
       }
 
       // DETERMINE THE BUTTON TYPE
@@ -261,35 +281,34 @@ setTimeout(() => {
       let doc_pending_data = doc.pending;
       let pending_list_data = [];
 
-      doc_pending_data.forEach(data_pending => {
-        let split_data = data_pending.split(",");
-        split_data.forEach(data => {
+      doc_pending_data.forEach((data_pending) => {
+        let split_data = data_pending.split(',');
+        split_data.forEach((data) => {
           pending_list_data.push(data);
-        })
-      })
+        });
+      });
 
       if (doc.owner == firebase_room_id) {
         //owner
-        button.className = "display-delete";
-        button_p.innerHTML = "Delete";
-        button_image.src = "./images/Trash.svg";
+        button.className = 'display-delete';
+        button_p.innerHTML = 'Delete';
+        button_image.src = './images/Trash.svg';
       } else if (doc.matches_join.includes(firebase_room_id)) {
         //leave
-        button.className = "display-leave";
-        button_p.innerHTML = "Leave";
-        button_image.src = "./images/Leave.svg";
+        button.className = 'display-leave';
+        button_p.innerHTML = 'Leave';
+        button_image.src = './images/Leave.svg';
       } else if (pending_list_data.includes(firebase_room_id)) {
         //withdraw
-        button.className = "display-withdraw";
-        button_p.innerHTML = "Withdraw";
-        button_image.src = "./images/withdraw.svg";
+        button.className = 'display-withdraw';
+        button_p.innerHTML = 'Withdraw';
+        button_image.src = './images/withdraw.svg';
       } else {
         //request
-        button.className = "display-request";
-        button_p.innerHTML = "Request";
-        button_image.src = "./images/Right arrow.svg";
+        button.className = 'display-request';
+        button_p.innerHTML = 'Request';
+        button_image.src = './images/Right arrow.svg';
       }
-
 
       //display-color-identifier
       display_color_identifier.appendChild(icon);
@@ -324,7 +343,7 @@ setTimeout(() => {
       display_item.appendChild(button);
 
       //CHECK IF THERE IS DUPLICATE
-      let ul_id = full_day + " " + date_join + ", " + doc.time + " WIB";
+      let ul_id = full_day + ' ' + date_join + ', ' + doc.time + ' WIB';
       var find_duplicate = document.getElementById(ul_id);
       if (find_duplicate) {
         //APPEND TO EXISTING UL
@@ -341,35 +360,37 @@ setTimeout(() => {
       // DISPLAY APPLICATION FOR LEAVE AND DELETE
       */
 
-      let buttons_leave = document.querySelectorAll(".display-leave");
-      buttons_leave.forEach(but => {
+      let buttons_leave = document.querySelectorAll('.display-leave');
+      buttons_leave.forEach((but) => {
         but.addEventListener('click', () => {
-          let button_parent_data_id = but.parentNode.getAttribute("data-id");
+          let button_parent_data_id = but.parentNode.getAttribute('data-id');
 
           let li_selected = but.parentNode;
           let ul_selected = li_selected.parentNode;
           let ul_selected_child = li_selected.parentNode.childElementCount;
           let div_selected = ul_selected.parentNode;
 
-          db.collection('match').doc(button_parent_data_id).update({
-            matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
-          });
+          db.collection('match')
+            .doc(button_parent_data_id)
+            .update({
+              matches_join:
+                firebase.firestore.FieldValue.arrayRemove(firebase_room_id),
+            });
 
           if (ul_selected_child < 2) {
-            display_container.removeChild(div_selected)
+            display_container.removeChild(div_selected);
           } else {
             ul_selected.removeChild(li_selected);
           }
-        })
-      })
+        });
+      });
 
-      let modalReason = document.querySelectorAll(".display-delete");
+      let modalReason = document.querySelectorAll('.display-delete');
       for (var i = 0; i < modalReason.length; i++) {
-        modalReason[i].addEventListener('click',
-          function () {
-            this.id = "selected_button";
-            document.querySelector(".modal-reason").style.display = 'flex';
-          });
+        modalReason[i].addEventListener('click', function () {
+          this.id = 'selected_button';
+          document.querySelector('.modal-reason').style.display = 'flex';
+        });
       }
     }
 
@@ -412,7 +433,7 @@ setTimeout(() => {
 
     //   let text_area_application = document.querySelectorAll("#modal-textarea");
 
-    //   // FORM DELETE 
+    //   // FORM DELETE
     //   document.querySelector(".modal-close-reason").addEventListener('click',
     //     function () {
     //       let selected_button = document.querySelectorAll("#selected_button");
@@ -474,61 +495,66 @@ setTimeout(() => {
     //   })
     // })
 
-
-    document.addEventListener("click", () => {
+    document.addEventListener('click', () => {
       // DISPLAY APPLICATION FOR REQUEST, DELETE, AND WITHDRAW
 
       // LEAVE
-      let buttons_leave = document.querySelectorAll(".display-leave");
-      buttons_leave.forEach(but => {
+      let buttons_leave = document.querySelectorAll('.display-leave');
+      buttons_leave.forEach((but) => {
         but.addEventListener('click', () => {
-          let button_parent_data_id = but.parentNode.getAttribute("data-id");
+          let button_parent_data_id = but.parentNode.getAttribute('data-id');
 
-          db.collection('match').doc(button_parent_data_id).update({
-            matches_join: firebase.firestore.FieldValue.arrayRemove(firebase_room_id)
-          });
+          db.collection('match')
+            .doc(button_parent_data_id)
+            .update({
+              matches_join:
+                firebase.firestore.FieldValue.arrayRemove(firebase_room_id),
+            });
 
-          but.className = "display-request";
-          but.querySelector(".button_p").innerHTML = "Request";
-          but.querySelector(".button_image").src = "./images/Right arrow.svg";
-        })
-      })
+          but.className = 'display-request';
+          but.querySelector('.button_p').innerHTML = 'Request';
+          but.querySelector('.button_image').src = './images/Right arrow.svg';
+        });
+      });
 
       // DELETE
-      let modalReason = document.querySelectorAll(".display-delete");
+      let modalReason = document.querySelectorAll('.display-delete');
       for (var i = 0; i < modalReason.length; i++) {
-        modalReason[i].addEventListener('click',
-          function () {
-            this.id = "selected_button";
-            document.querySelector(".modal-reason").style.display = 'flex';
-          });
+        modalReason[i].addEventListener('click', function () {
+          this.id = 'selected_button';
+          document.querySelector('.modal-reason').style.display = 'flex';
+        });
       }
 
-      let text_area_application = document.querySelectorAll("#modal-textarea");
+      let text_area_application = document.querySelectorAll('#modal-textarea');
 
-      // FORM DELETE 
-      document.querySelector(".modal-close-reason").addEventListener('click',
-        function () {
-          let selected_button = document.querySelectorAll("#selected_button");
-          selected_button.forEach(button => {
+      // FORM DELETE
+      document
+        .querySelector('.modal-close-reason')
+        .addEventListener('click', function () {
+          let selected_button = document.querySelectorAll('#selected_button');
+          selected_button.forEach((button) => {
             button.removeAttribute('id');
-          })
-          document.querySelector(".modal-reason").style.display = 'none';
-          text_area_application.forEach(text_area => {
-            text_area.value = "";
-          })
+          });
+          document.querySelector('.modal-reason').style.display = 'none';
+          text_area_application.forEach((text_area) => {
+            text_area.value = '';
+          });
         });
 
-      let modal_reason_submit = document.querySelectorAll(".modal-reason-submit");
-      modal_reason_submit.forEach(reason => {
+      let modal_reason_submit = document.querySelectorAll(
+        '.modal-reason-submit'
+      );
+      modal_reason_submit.forEach((reason) => {
         reason.addEventListener('click', (e) => {
           e.preventDefault();
-          let textarea = reason.parentNode.querySelector("textarea");
+          let textarea = reason.parentNode.querySelector('textarea');
           if (textarea.value.length < 20) {
-            console.log("Enter 20 CHARACTERS");
+            console.log('Enter 20 CHARACTERS');
           } else {
-            let button_chosen = document.getElementById("selected_button");
-            let button_parent_data_id = button_chosen.parentNode.getAttribute("data-id");
+            let button_chosen = document.getElementById('selected_button');
+            let button_parent_data_id =
+              button_chosen.parentNode.getAttribute('data-id');
 
             // // DELETE OWNER FIELD AND ADD STATUS FIELD
             // db.collection('match').doc(button_parent_data_id).set({
@@ -541,19 +567,29 @@ setTimeout(() => {
             let reason_final = `***************************************************************************\n\nTHE OWNER HAS CANCELLED THE EVENT!\n\nThe owner's reason: ${reason}\n\n***************************************************************************`;
 
             //APPEND MESSAGE TO THE DATABASE
-            dbf.ref('all_chats' + `/${button_parent_data_id}`).once('value', function (message_object) {
-              // This index is mortant. It will help organize the chat in order
-              var index = parseFloat(message_object.numChildren()) + 1
-              dbf.ref('all_chats' + `/${button_parent_data_id}` + `/message_${index}`).set({
-                name: "SYSTEM",
-                message: `${reason_final}`,
-                index: index
-              })
-            })
+            dbf
+              .ref('all_chats' + `/${button_parent_data_id}`)
+              .once('value', function (message_object) {
+                // This index is mortant. It will help organize the chat in order
+                var index = parseFloat(message_object.numChildren()) + 1;
+                dbf
+                  .ref(
+                    'all_chats' +
+                      `/${button_parent_data_id}` +
+                      `/message_${index}`
+                  )
+                  .set({
+                    name: 'SYSTEM',
+                    message: `${reason_final}`,
+                    index: index,
+                  });
+              });
 
             // GET DATE + 1 FROM TODAY
             let current_full_date = new Date();
-            let updatedtime = current_full_date.setDate(current_full_date.getDate() + 1);
+            let updatedtime = current_full_date.setDate(
+              current_full_date.getDate() + 1
+            );
             let finaltime = new Date(updatedtime);
 
             // db.collection('match').doc(button_parent_data_id).update({
@@ -563,30 +599,30 @@ setTimeout(() => {
             // });
 
             // REMOVE ELEMENT FROM PARENT
-            let button_selected = document.getElementById("selected_button");
+            let button_selected = document.getElementById('selected_button');
             let li_selected = button_selected.parentNode;
             let ul_selected = li_selected.parentNode;
             let ul_selected_child = li_selected.parentNode.childElementCount;
             let div_selected = ul_selected.parentNode;
 
             if (ul_selected_child < 2) {
-              display_container.removeChild(div_selected)
+              display_container.removeChild(div_selected);
             } else {
               ul_selected.removeChild(li_selected);
             }
 
-            let selected_button = document.querySelectorAll("#selected_button");
-            selected_button.forEach(button => {
+            let selected_button = document.querySelectorAll('#selected_button');
+            selected_button.forEach((button) => {
               button.removeAttribute('id');
-            })
-            text_area_application.forEach(text_area => {
-              text_area.value = "";
-            })
+            });
+            text_area_application.forEach((text_area) => {
+              text_area.value = '';
+            });
 
-            document.querySelector(".modal-reason").style.display = 'none';
+            document.querySelector('.modal-reason').style.display = 'none';
           }
         });
-      })
-    })
-  };
-}, 5000)
+      });
+    });
+  }
+}, 5000);
