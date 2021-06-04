@@ -1,3 +1,12 @@
+let check_information = sessionStorage.getItem('verify_email_signup');
+
+if (!check_information) {
+  location.replace('../Kebantai-Log-In/login.html');
+} else {
+  let body = document.querySelector('body');
+  body.style.display = 'unset';
+}
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
@@ -10,8 +19,6 @@ var firebaseConfig = {
   appId: '1:290266641346:web:85b99043fe87f7795a1c5b',
   measurementId: 'G-M3H7QJBJGQ',
 };
-
-let firebase_room_id = localStorage.getItem('room_id');
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -62,6 +69,8 @@ menuToggle.addEventListener('click', () => {
 // LOAD CONTENT AND CHAT
 let empty_content = document.querySelector('.empty-content');
 var joined = true;
+
+let firebase_room_id = sessionStorage.getItem('room_id');
 
 dbf
   .collection('account')
@@ -794,20 +803,6 @@ setTimeout(() => {
       darkBackground2.classList.remove('active');
     });
 
-    // let otherRooms_toggle = document.getElementById('chat_others_toggle');
-    // let members_toggle = document.querySelector('#chat_members_toggle');
-
-    /*
-      // MEMBERS AND PENDING
-      */
-
-    // let form_room = document.querySelector(".roomslist");
-    // let event_members = document.querySelector(".event-members");
-    // let pending_members = document.querySelector('.pending-members');
-    // let members_amount = document.querySelector('.members-amount');
-
-    console.log('firebase_room_id', firebase_room_id);
-
     dbf
       .collection('account')
       .doc(firebase_room_id)
@@ -829,8 +824,6 @@ setTimeout(() => {
               if (!dok.data().owner) {
                 owner = false;
               }
-              console.log('ini dapet');
-              console.log('pertama', dok.id);
               renderRoom(dok.data(), dok.id, owner);
             });
           });
@@ -1111,7 +1104,7 @@ setTimeout(() => {
                 let input_to_check = selected_room.querySelector('input');
                 let rooms_list = document.querySelector('.roomslist');
 
-                roomslist_room.removeChild(div_to_delete);
+                rooms_list.removeChild(div_to_delete);
 
                 if (input_to_check.id === `/${change.doc.id}`) {
                   let chat_title_html = document.getElementById('chat_title');

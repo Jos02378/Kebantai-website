@@ -145,70 +145,53 @@ nextPage1.addEventListener('click', function () {
     successBox.style.display = 'none';
   }
 
-  if (event_name.value == '') {
-    error_text.innerHTML = 'Please fill in the event name.';
-    error.style.display = 'block';
-    error.style.opacity = '1';
-    errorBox.style.transform = 'scale(1)';
-  } else if (event_name.value == 'Joseph') {
-    error_text.innerHTML = 'The event name has been taken.';
-    error.style.display = 'block';
-    error.style.opacity = '1';
-    errorBox.style.transform = 'scale(1)';
-  } else if (location_name.value == '') {
-    error_text.innerHTML = 'Please fill in the location name.';
-    error.style.display = 'block';
-    error.style.opacity = '1';
-    errorBox.style.transform = 'scale(1)';
-  } else if (region_value == '') {
-    error_text.innerHTML = 'Please choose a region.';
-    error.style.display = 'block';
-    error.style.opacity = '1';
-    errorBox.style.transform = 'scale(1)';
-  } else if (address.value == '') {
-    error_text.innerHTML = 'Please fill in the address.';
-    error.style.display = 'block';
-    error.style.opacity = '1';
-    errorBox.style.transform = 'scale(1)';
-  } else {
-    page1.classList.add('page-1-stateA');
-    page2.classList.add('page-2-stateA');
-    page3.classList.add('page-3-stateA');
-    progress1.innerHTML = '1';
-    progress2.innerHTML = 'SET THE TIME FOR YOUR EVENT';
-    progress1.classList.remove('active-progress');
-    progress2.classList.add('active-progress');
-    error.style.display = 'none';
-    error.style.opacity = '0';
-    errorBox.style.transform = 'scale(0.01)';
-  }
-
-  // db.collection('match').where("event_name", "==", event_name.value).get().then((snapshot) => {
-  //   snapshot.docs.forEach(doc => {
-  //     if (doc.exists) {
-  //       duplicate = true;
-  //     }
-  //   })
-  //   if (event_name.value == "") {
-  //     alert("please fill the event name");
-  //   } else if (duplicate == true) {
-  //     alert("the event name has been taken");
-  //   } else if (location_name.value == "") {
-  //     alert("please fill the location name")
-  //   } else if (region_value == "") {
-  //     alert("please choose a region");
-  //   } else if (address.value == "") {
-  //     alert("please fill the address");
-  //   } else {
-  //     page1.classList.add('page-1-stateA');
-  //     page2.classList.add('page-2-stateA');
-  //     page3.classList.add('page-3-stateA');
-  //     progress1.innerHTML = ("1");
-  //     progress2.innerHTML = ("SET THE TIME FOR YOUR EVENT");
-  //     progress1.classList.remove('active-progress')
-  //     progress2.classList.add('active-progress')
-  //   }
-  // })
+  db.collection('match')
+    .where('event_name', '==', event_name.value)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        if (doc.exists) {
+          duplicate = true;
+        }
+      });
+      if (event_name.value == '') {
+        error_text.innerHTML = 'Please fill in the event name.';
+        error.style.display = 'block';
+        error.style.opacity = '1';
+        errorBox.style.transform = 'scale(1)';
+      } else if (duplicate) {
+        error_text.innerHTML = 'The event name has been taken.';
+        error.style.display = 'block';
+        error.style.opacity = '1';
+        errorBox.style.transform = 'scale(1)';
+      } else if (location_name.value == '') {
+        error_text.innerHTML = 'Please fill in the location name.';
+        error.style.display = 'block';
+        error.style.opacity = '1';
+        errorBox.style.transform = 'scale(1)';
+      } else if (region_value == '') {
+        error_text.innerHTML = 'Please choose a region.';
+        error.style.display = 'block';
+        error.style.opacity = '1';
+        errorBox.style.transform = 'scale(1)';
+      } else if (address.value == '') {
+        error_text.innerHTML = 'Please fill in the address.';
+        error.style.display = 'block';
+        error.style.opacity = '1';
+        errorBox.style.transform = 'scale(1)';
+      } else {
+        page1.classList.add('page-1-stateA');
+        page2.classList.add('page-2-stateA');
+        page3.classList.add('page-3-stateA');
+        progress1.innerHTML = '1';
+        progress2.innerHTML = 'SET THE TIME FOR YOUR EVENT';
+        progress1.classList.remove('active-progress');
+        progress2.classList.add('active-progress');
+        error.style.display = 'none';
+        error.style.opacity = '0';
+        errorBox.style.transform = 'scale(0.01)';
+      }
+    });
 });
 
 prevPage1.addEventListener('click', function () {
@@ -408,8 +391,6 @@ let current_date = new Date().getDate();
 let current_date_selected =
   document.getElementsByTagName('time')[current_date - 1];
 
-// current_date_selected.className = "selected";
-
 let date_calender = myCalender.value.toDateString();
 
 myCalender.onValueChange((currentValue) => {
@@ -424,40 +405,6 @@ date_wheel_button.addEventListener('click', () => {
   let date_final = new Date(date_input).toDateString();
   date_calender = date_final;
 });
-
-//CHECK IF THE TIME HAS PASSED
-// function hour_check(date_calender) {
-//   const current_month = new Date().getMonth();
-//   const current_date = new Date().getDate();
-//   let current_hour = new Date().getHours();
-//   const current_minute = new Date().getMinutes();
-//   let calender_month = new Date(date_calender).getMonth();
-//   let calender_date = new Date(date_calender).getDate();
-//   const input_time = document.getElementsByName("time");
-//   var i;
-//   var temp = "";
-
-//   for (i = 0; i < input_time.length; i++) {
-//     if (input_time[i].checked == true) {
-//       temp = input_time[i].value;
-//     }
-//   }
-
-//   //TURN INTO NUMBER
-//   var temp_list = temp.split(":");
-//   var hour_input = Number(temp_list[0]);
-//   if (current_minute > 0) {
-//     current_hour += 1;
-//   }
-//   var hour_diff = hour_input - current_hour;
-
-//   //check hour
-//   if (calender_month == current_month && calender_date == current_date && hour_diff < 3) {
-//     return false;
-//   } else {
-//     return true;
-//   }
-// }
 
 /*
 // FIREBASE
@@ -507,10 +454,10 @@ signupForm.addEventListener('submit', (e) => {
   let location_name_form = signupForm.location_name.value;
   let address_form = signupForm.address.value;
 
-  let firebase_room_id = localStorage.getItem('room_id');
+  let firebase_room_id = sessionStorage.getItem('room_id');
 
   db.collection('match').add({
-    event_name: event_name_form.trim(),
+    event_name: event_name_form.trim().toLowerCase(),
     location: location_name_form.trim(),
     address: address_form.trim(),
     sport: sport_value,
@@ -622,24 +569,3 @@ $(document).keypress(function (event) {
     event.preventDefault();
   }
 });
-
-// BIKIN CHAT DI REALTIME DATABASE DAN PUSH MESSAGE
-
-// db_rd.ref('all_chats' + '/chats_4').once('value', function (message_object) {
-//   // This index is mortant. It will help organize the chat in order
-//   var index = parseFloat(message_object.numChildren()) + 1;
-//   db_rd.ref('all_chats' + '/chats_4/' + `message_${index}`).set({
-//     name: "joseph",
-//     message: "hello",
-//     index: index
-//   })
-//   // db_rd.ref('all_chats' + '/chats_3' + `message_${index}`).set({
-//   //     name: parent.get_name(),
-//   //     message: message,
-//   //     index: index
-//   //   })
-//   //   .then(function () {
-//   //     // After we send the chat refresh to get the new messages
-//   //     parent.refresh_chat()
-//   //   })
-// })

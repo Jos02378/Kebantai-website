@@ -33,7 +33,7 @@ db.settings({
 // Initialized Firebase Realtime Database
 const dbf = firebase.database();
 
-let firebase_room_id = localStorage.getItem('room_id');
+let firebase_room_id = sessionStorage.getItem('room_id');
 
 // HEADER BEHAVIOR
 let menuToggle = document.querySelector('.navigation-toggle');
@@ -315,7 +315,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -361,7 +361,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -407,7 +407,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -454,7 +454,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -502,7 +502,7 @@ selectedAll.forEach((selected) => {
                       let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
-                        firebase_date < realtime_date_time &&
+                        firebase_date > realtime_date_time &&
                         firebase_size < firebase_limit
                       ) {
                         renderMatch3(change.doc.data(), change.doc.id);
@@ -554,7 +554,7 @@ selectedAll.forEach((selected) => {
                       let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
-                        firebase_date < realtime_date_time &&
+                        firebase_date > realtime_date_time &&
                         firebase_size < firebase_limit
                       ) {
                         renderMatch3(change.doc.data(), change.doc.id);
@@ -604,7 +604,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -650,7 +650,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -696,7 +696,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -744,7 +744,7 @@ selectedAll.forEach((selected) => {
                     let firebase_limit = change.doc.data().limit;
                     if (
                       change.doc.data().owner &&
-                      firebase_date < realtime_date_time &&
+                      firebase_date > realtime_date_time &&
                       firebase_size < firebase_limit
                     ) {
                       renderMatch3(change.doc.data(), change.doc.id);
@@ -793,7 +793,7 @@ selectedAll.forEach((selected) => {
                       let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
-                        firebase_date < realtime_date_time &&
+                        firebase_date > realtime_date_time &&
                         firebase_size < firebase_limit
                       ) {
                         renderMatch3(change.doc.data(), change.doc.id);
@@ -846,7 +846,7 @@ selectedAll.forEach((selected) => {
                       let firebase_limit = change.doc.data().limit;
                       if (
                         change.doc.data().owner &&
-                        firebase_date < realtime_date_time &&
+                        firebase_date > realtime_date_time &&
                         firebase_size < firebase_limit
                       ) {
                         renderMatch3(change.doc.data(), change.doc.id);
@@ -1066,7 +1066,7 @@ db.collection('match')
         let firebase_limit = change.doc.data().limit;
         if (
           change.doc.data().owner &&
-          firebase_date < realtime_date_time &&
+          firebase_date > realtime_date_time &&
           firebase_size < firebase_limit
         ) {
           renderMatch3(change.doc.data(), change.doc.id);
@@ -1189,14 +1189,6 @@ var ok_test8 = {
 };
 
 let div = document.querySelector('.display-container');
-
-// renderMatch3(ok_test4)
-// renderMatch3(ok_test5)
-// renderMatch3(ok_test6)
-// renderMatch3(ok_test7)
-// renderMatch3(ok_test)
-// renderMatch3(ok_test3)
-// renderMatch3(ok_test2)
 
 // SORTING FUNCTION
 function sortDiv() {
@@ -1537,8 +1529,6 @@ function updateMatch(doc, id) {
   }
 }
 
-sortDiv();
-
 document.addEventListener('click', () => {
   // DISPLAY APPLICATION FOR REQUEST, DELETE, AND WITHDRAW
 
@@ -1779,7 +1769,6 @@ document.addEventListener('click', () => {
 /*
 // AUTOMATIC DATA DELETION FOR FIREBASE
 */
-
 let current_seconds = new Date().getSeconds();
 let difference_seconds = 60 - current_seconds;
 
@@ -1832,7 +1821,6 @@ setTimeout(function () {
 
     if (top_on_the_list < date_current) {
       var child = ul_top.lastElementChild;
-
       // REMOVE LI
       while (child) {
         // DELETE OWNER FIELD
@@ -1868,10 +1856,11 @@ setTimeout(function () {
         // DELETE ROOM IN WEB CLIENT
         ul_top.removeChild(child);
         child = ul_top.lastElementChild;
+
+        // // REMOVE DIV
+        document.querySelector('.display-container').removeChild(div_top[1]);
       }
     }
-    // // REMOVE DIV
-    document.querySelector('.display-container').removeChild(div_top[1]);
   }
 }, difference_seconds * 1000);
 

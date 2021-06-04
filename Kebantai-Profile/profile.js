@@ -64,9 +64,9 @@ menuToggle.addEventListener('click', () => {
   darkBackground.classList.add('active');
 });
 
-let user_email = localStorage.getItem('verify_email_signup');
-
+let user_email = sessionStorage.getItem('verify_email_signup');
 let changePassword = document.querySelector('.password-button');
+
 changePassword.addEventListener('click', () => {
   modalPassword.style.display = 'unset';
   auth
@@ -154,7 +154,7 @@ let age = document.querySelector('#age');
 //   email_user.innerHTML = user.email;
 // }
 
-let firebase_room_id = localStorage.getItem('room_id');
+let firebase_room_id = sessionStorage.getItem('room_id');
 
 // FIRESTORE
 db.collection('account')

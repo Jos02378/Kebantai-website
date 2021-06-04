@@ -29,6 +29,8 @@ db.settings({
   timestampsInSnapshots: true,
 });
 
+var dbf = firebase.database();
+
 // HEADER BEHAVIOR
 let menuToggle = document.querySelector('.navigation-toggle');
 let rightTab = document.querySelector('.right-header-tab');
@@ -63,7 +65,7 @@ menuToggle.addEventListener('click', () => {
   darkBackground.classList.add('active');
 });
 
-let firebase_room_id = localStorage.getItem('room_id');
+let firebase_room_id = sessionStorage.getItem('room_id');
 let empty_content = document.querySelector('.empty-content');
 let main_content = document.querySelector('.content');
 var joined = true;
@@ -92,11 +94,6 @@ setTimeout(() => {
         document.querySelector('.modal-reason').style.display = 'flex';
       });
     }
-
-    // document.querySelector(".modal-close-application").addEventListener('click',
-    // function() {
-    //     document.querySelector(".modal-application").style.display = 'none';
-    // });
 
     document
       .querySelector('.modal-close-reason')
@@ -557,11 +554,14 @@ setTimeout(() => {
               button_chosen.parentNode.getAttribute('data-id');
 
             // // DELETE OWNER FIELD AND ADD STATUS FIELD
-            // db.collection('match').doc(button_parent_data_id).set({
-            //     reason: textarea.value.trim()
-            // }, {
-            //     merge: true
-            // });
+            db.collection('match').doc(button_parent_data_id).set(
+              {
+                reason: textarea.value.trim(),
+              },
+              {
+                merge: true,
+              }
+            );
 
             let reason = textarea.value.trim();
             let reason_final = `***************************************************************************\n\nTHE OWNER HAS CANCELLED THE EVENT!\n\nThe owner's reason: ${reason}\n\n***************************************************************************`;
@@ -592,11 +592,11 @@ setTimeout(() => {
             );
             let finaltime = new Date(updatedtime);
 
-            // db.collection('match').doc(button_parent_data_id).update({
-            //     owner: firebase.firestore.FieldValue.delete(),
-            //     status: "deleted",
-            //     date: finaltime
-            // });
+            db.collection('match').doc(button_parent_data_id).update({
+              owner: firebase.firestore.FieldValue.delete(),
+              status: 'deleted',
+              date: finaltime,
+            });
 
             // REMOVE ELEMENT FROM PARENT
             let button_selected = document.getElementById('selected_button');
