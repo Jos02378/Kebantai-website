@@ -131,6 +131,7 @@ yesLeave.addEventListener('click', () => {
     .signOut()
     .then(() => {
       // Sign-out successful.
+      sessionStorage.clear();
       window.location.replace('../Kebantai-Homepage-Unsigned/index.html');
     })
     .catch((error) => {

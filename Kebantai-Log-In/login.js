@@ -182,6 +182,18 @@ function show_error(errorMessage) {
   errorBox.style.display = 'flex';
 }
 
+let dummyEmail = 'kebantailogin@gmail.com';
+let dummyPassword = 'KebantaiLogin';
+
+firebase
+  .auth()
+  .signInWithEmailAndPassword(dummyEmail, dummyPassword)
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    window.alert('Error: ' + errorMessage);
+  });
+
 // SIGNUP BUTTON
 signupButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -190,29 +202,6 @@ signupButton.addEventListener('click', (e) => {
   let check_whitespace_username = hasWhiteSpace(username_signup.value);
   let check_whitespace_password = hasWhiteSpace(password_signup.value);
   let email_validation = validate(email_signup.value);
-
-  // auth.createUserWithEmailAndPassword(email_signup_trimmed, password_signup.value).then(function () {
-  //     var user = firebase.auth().currentUser;
-  //     window.location.href = "index.html";
-
-  //     //SEND VERIFICATION EMAIL
-  //     user.sendEmailVerification().then(function () {
-  //         // Email sent.
-  //         console.log("Email verification already sent");
-
-  //     }).catch(function (error) {
-  //         // An error happened.
-  //         var errorCode = error.code;
-  //         var errorMessage = error.message;
-  //         console.log("Error: " + errorMessage);
-  //     })
-
-  // }).catch((error) => {
-  //     var errorCode = error.code;
-  //     var errorMessage = error.message;
-
-  //     show_error(errorMessage);
-  // });
 
   db.collection('account')
     .where('username', '==', username_signup.value.toLowerCase())
