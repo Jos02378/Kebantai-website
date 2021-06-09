@@ -1794,6 +1794,17 @@ setTimeout(function () {
       });
     });
 
+  // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE BASED ON TIME
+  let dateToString = new Date().toString();
+  db.collection('match')
+    .where('date', '<', dateToString)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection('match').doc(doc.id).delete();
+      });
+    });
+
   // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE FOR DELETED
   db.collection('match')
     .where('status', '==', 'deleted')
