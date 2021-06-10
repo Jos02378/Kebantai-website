@@ -1785,23 +1785,13 @@ setTimeout(function () {
         let current_time = new Date();
 
         if (doc.data().date < current_time) {
+          db.collection('match').doc(doc.id).delete();
           dbf.ref('all_chats' + `/${doc.id}`).remove();
           db.collection('match')
             .doc(doc.id)
             .delete()
             .then(() => {});
         }
-      });
-    });
-
-  // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE BASED ON TIME
-  let dateToString = new Date().toString();
-  db.collection('match')
-    .where('date', '<', dateToString)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        db.collection('match').doc(doc.id).delete();
       });
     });
 
@@ -1814,6 +1804,26 @@ setTimeout(function () {
         let current_time = new Date();
 
         if (doc.data().date < current_time) {
+          db.collection('match').doc(doc.id).delete();
+          dbf.ref('all_chats' + `/${doc.id}`).remove();
+          db.collection('match')
+            .doc(doc.id)
+            .delete()
+            .then(() => {});
+        }
+      });
+    });
+
+  // DELETE DOCUMENT IN FIRESTORE AND REALTIME DATABASE BASED ON TIME
+  let dateToString = new Date();
+  db.collection('match')
+    .where('event_name', '!=', null)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let docDateAndTime = new Date(doc.data().date + ' ' + doc.data().time);
+        if (docDateAndTime < dateToString) {
+          db.collection('match').doc(doc.id).delete();
           dbf.ref('all_chats' + `/${doc.id}`).remove();
           db.collection('match')
             .doc(doc.id)
